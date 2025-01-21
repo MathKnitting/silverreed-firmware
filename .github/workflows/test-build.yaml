@@ -1,0 +1,47 @@
+name: Test & Build
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "README.md"
+      - "LICENSE"
+      - ".gitignore"
+      - ".github/ISSUE_TEMPLATE/**"
+
+  pull_request:
+
+jobs:
+  test-build:
+    name: Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+          cache: "poetry"
+
+      - name: Install dependencies using poetry
+        run: poetry install --no-root
+
+      - name: Initiate PlatformIO
+        run: poetry run task init
+
+      # Install pre-commit linting dependencies.
+      - name: Install clang
+        run: sudo apt-get install clang clang-format clang-tidy
+
+      - name: Run pre-commit hooks
+        run: poetry run task lint
+
+      - name: Build PlatformIO
+        run: poetry run task build
