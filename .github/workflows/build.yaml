@@ -2,13 +2,8 @@ name: CI
 
 on:
   push:
-    pull_request:
-
-    branches:
+    tags:
       - "*"
-      - "!main"
-
-  pull_request:
 
 jobs:
   test-build:
