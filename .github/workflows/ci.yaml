@@ -1,14 +1,7 @@
-name: Test & Build
+name: CI
 
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - "README.md"
-      - "LICENSE"
-      - ".gitignore"
-      - ".github/ISSUE_TEMPLATE/**"
 
   pull_request:
 
