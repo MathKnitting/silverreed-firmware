@@ -14,14 +14,16 @@ void setup() {
    */
   // Set the pin modes.
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(PinsCorrespondance::ND1, INPUT);  // not used for now
+  pinMode(PinsCorrespondance::ND1, INPUT_PULLUP);  // not used for now
   pinMode(PinsCorrespondance::KSL, INPUT_PULLUP);
   pinMode(PinsCorrespondance::DOB, OUTPUT);
   pinMode(PinsCorrespondance::CCP, INPUT_PULLUP);
   pinMode(PinsCorrespondance::HOK, INPUT_PULLUP);
+  pinMode(PinsCorrespondance::SOLENOID_POWER, OUTPUT);
 
   // Set the DOB initial state to low.
   digitalWrite(PinsCorrespondance::DOB, LOW);
+  digitalWrite(PinsCorrespondance::SOLENOID_POWER, LOW);
 
   // Initialize the program singletons.
   Ayab.init();
