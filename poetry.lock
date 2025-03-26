@@ -187,14 +187,14 @@ files = [
 
 [[package]]
 name = "click"
-version = "8.1.8"
+version = "8.1.7"
 description = "Composable command line interface toolkit"
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "click-8.1.8-py3-none-any.whl", hash = "sha256:63c132bbbed01578a06712a2d1f497bb62d9c1c0d329b7903a866228027263b2"},
-    {file = "click-8.1.8.tar.gz", hash = "sha256:ed53c9d8990d83c2a27deae68e4ee337473f6330c040a31d4225c9574d16096a"},
+    {file = "click-8.1.7-py3-none-any.whl", hash = "sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28"},
+    {file = "click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de"},
 ]
 
 [package.dependencies]
@@ -372,27 +372,28 @@ type = ["mypy (>=1.11.2)"]
 
 [[package]]
 name = "platformio"
-version = "6.1.17"
+version = "6.1.18"
 description = "Your Gateway to Embedded Software Development Excellence. Unlock the true potential of embedded software development with PlatformIO's collaborative ecosystem, embracing declarative principles, test-driven methodologies, and modern toolchains for unrivaled success."
 optional = false
 python-versions = ">=3.6"
 groups = ["main"]
 files = [
-    {file = "platformio-6.1.17.tar.gz", hash = "sha256:f2364cfeed1d30d99f04ee359754c82591a43c83b6ce2de5bf1334c364f85332"},
+    {file = "platformio-6.1.18-py3-none-any.whl", hash = "sha256:94ef70a242ddcb93e020b0250c4f61e65b347411e8dfe36f79efb759c09324fa"},
+    {file = "platformio-6.1.18.tar.gz", hash = "sha256:6ea19c66fba3c5272378afa6ae11abbf883243dd8e503ac5f4ff8ac277ccc7c6"},
 ]
 
 [package.dependencies]
 ajsonrpc = "==1.2.*"
 bottle = "==0.13.*"
 chardet = {version = ">=3.0.2,<6", markers = "platform_system == \"Darwin\" and \"arm\" in platform_machine"}
-click = ">=8.0.4,<9"
+click = ">=8.0.4,<8.1.8"
 colorama = "*"
 marshmallow = "==3.*"
 pyelftools = ">=0.27,<1"
 pyserial = "==3.5.*"
 requests = "==2.*"
 semantic_version = "==2.10.*"
-starlette = ">=0.19,<0.46"
+starlette = ">=0.19,<0.47"
 tabulate = "==0.*"
 uvicorn = ">=0.16,<0.35"
 wsproto = "==1.*"
@@ -818,4 +819,4 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "29397b6e5851dc8166025a0f08bbde0cf2e49efe55f4e8aa4857e55763d1ca63"
+content-hash = "5a13ca7cf5307cae0dd49f4fd00aeced3623ede24a308bf2c17da7d4f1baeb19"
