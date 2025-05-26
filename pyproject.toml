@@ -15,7 +15,7 @@ taskipy = "^1.14.1"
 pre-commit = "^4.2.0"
 pyserial = "^3.5"
 pytest = "^8.3.4"
-sliplib = "^0.7.0"
+sliplib = "^0.7.1"
 
 
 [tool.taskipy.tasks]

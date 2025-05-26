@@ -615,14 +615,14 @@ doc = ["Sphinx", "sphinx-rtd-theme"]
 
 [[package]]
 name = "sliplib"
-version = "0.7.0"
+version = "0.7.1"
 description = "Slip package"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
 files = [
-    {file = "sliplib-0.7.0-py3-none-any.whl", hash = "sha256:40d9a2b230ea4e41df69de58e1b8899127aae152fd35d3f27b9a877662bf542a"},
-    {file = "sliplib-0.7.0.tar.gz", hash = "sha256:ec1ea9bad58844636977f1f0f45a7a0a3eecbf6ada8baadd4026d43145a737ff"},
+    {file = "sliplib-0.7.1-py3-none-any.whl", hash = "sha256:b0cbddd3ad9abc4d004dba47e5d85cc1e899c2c52d385c52cb36b41e0b298d50"},
+    {file = "sliplib-0.7.1.tar.gz", hash = "sha256:a109f4413adc72612750fbbf0d35b13e2a28f12332ce4ca3c106f9064c310053"},
 ]
 
 [[package]]
@@ -819,4 +819,4 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "29397b6e5851dc8166025a0f08bbde0cf2e49efe55f4e8aa4857e55763d1ca63"
+content-hash = "f31fcd45d141ecd72940a59009eb75582530bb8de9bdb7e9c8819d7c0699d7a9"
