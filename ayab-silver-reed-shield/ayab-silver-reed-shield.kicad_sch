@@ -195,23 +195,25 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "J"
-				(at 3.175 5.715 0)
+			(property "Reference" "J5"
+				(at 1.2702 -6.35 90)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify right)
 				)
 			)
 			(property "Value" "DIN-7"
-				(at 0 -6.604 0)
+				(at -1.2698 -6.35 90)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify right)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "Connector_DIN:DIN-704-M10"
 				(at 0 0 0)
 				(effects
 					(font
@@ -533,6 +535,24 @@
 						)
 					)
 					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 1.27 -7.62 90)
+					(length 2.54)
+					(name "GNG"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2361,7 +2381,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Relay:Relay_SPDT"
+		(symbol "Relay:Relay_SPST-NO"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -2374,7 +2394,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "Relay_SPDT"
+			(property "Value" "Relay_SPST-NO"
 				(at 11.43 1.27 0)
 				(effects
 					(font
@@ -2402,7 +2422,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Relay SPDT, monostable, EN50005"
+			(property "Description" "Relay SPST, normally open, EN50005"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2411,7 +2431,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "1P2T 1-Form-C single pole throw"
+			(property "ki_keywords" "1P1T 1-Form-A single pole throw NO"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2420,7 +2440,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "Relay?SPDT*"
+			(property "ki_fp_filters" "Relay?SPST*"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2429,7 +2449,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "Relay_SPDT_0_0"
+			(symbol "Relay_SPST-NO_0_0"
 				(polyline
 					(pts
 						(xy 7.62 5.08) (xy 7.62 2.54) (xy 6.985 3.175) (xy 7.62 3.81)
@@ -2443,7 +2463,7 @@
 					)
 				)
 			)
-			(symbol "Relay_SPDT_0_1"
+			(symbol "Relay_SPST-NO_0_1"
 				(rectangle
 					(start -10.16 5.08)
 					(end 10.16 -5.08)
@@ -2552,18 +2572,6 @@
 				)
 				(polyline
 					(pts
-						(xy 2.54 5.08) (xy 2.54 2.54) (xy 3.175 3.175) (xy 2.54 3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
 						(xy 3.175 0) (xy 3.81 0)
 					)
 					(stroke
@@ -2599,7 +2607,7 @@
 					)
 				)
 			)
-			(symbol "Relay_SPDT_1_1"
+			(symbol "Relay_SPST-NO_1_1"
 				(pin passive line
 					(at -5.08 7.62 270)
 					(length 2.54)
@@ -2637,24 +2645,6 @@
 					)
 				)
 				(pin passive line
-					(at 2.54 7.62 270)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "12"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at 5.08 -7.62 90)
 					(length 2.54)
 					(name "~"
@@ -2664,7 +2654,7 @@
 							)
 						)
 					)
-					(number "11"
+					(number "13"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3391,10 +3381,6 @@
 		(uuid "70f75e09-5e17-4443-bbbe-71479df53860")
 	)
 	(no_connect
-		(at 161.29 54.61)
-		(uuid "770eb0f5-a6d0-4fe2-96a8-2f766683ef3d")
-	)
-	(no_connect
 		(at 74.93 39.37)
 		(uuid "873ce0e8-c491-49a2-9249-96a8987c6441")
 	)
@@ -3419,16 +3405,8 @@
 		(uuid "d181157c-7812-47e5-a0cf-9580c905fc86")
 	)
 	(no_connect
-		(at 21.59 69.85)
-		(uuid "d3d95e90-d320-4371-96f3-76a4fd8e72f7")
-	)
-	(no_connect
 		(at 21.59 64.77)
 		(uuid "db14c758-6890-4d3c-bb13-f3129054f6fd")
-	)
-	(no_connect
-		(at 21.59 72.39)
-		(uuid "dda6e0d9-4e07-4190-8c82-8cac124af401")
 	)
 	(no_connect
 		(at 21.59 59.69)
@@ -5176,6 +5154,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 120.65 69.85 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0dc58423-f567-46cb-8e5b-78785fe2dcc7")
+		(property "Reference" "#PWR06"
+			(at 127 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 124.46 69.8499 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 120.65 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 120.65 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 120.65 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6b1042e6-7297-4524-8ba5-2d53320804e9")
+		)
+		(instances
+			(project ""
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 163.83 92.71 270)
 		(unit 1)
@@ -5201,7 +5246,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
 			(at 163.83 90.932 90)
 			(effects
 				(font
@@ -5269,7 +5314,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_BarrelJack:BarrelJack_Horizontal"
 			(at 140.97 30.226 0)
 			(effects
 				(font
@@ -5337,7 +5382,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_THT:D_T-1_P5.08mm_Horizontal"
 			(at 168.91 80.01 0)
 			(effects
 				(font
@@ -5557,7 +5602,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
 			(at 202.692 82.55 90)
 			(effects
 				(font
@@ -5757,7 +5802,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 163.83 101.092 90)
 			(effects
 				(font
@@ -6023,7 +6068,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D5.0mm"
 			(at 176.53 102.87 0)
 			(effects
 				(font
@@ -6168,7 +6213,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 174.9552 33.02 0)
 			(effects
 				(font
@@ -6304,7 +6349,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_Power_L20.0mm_W6.4mm_P25.40mm"
 			(at 188.722 29.21 90)
 			(effects
 				(font
@@ -6374,7 +6419,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_DIN:DIN-704-M10"
 			(at 113.03 71.12 0)
 			(effects
 				(font
@@ -6421,6 +6466,9 @@
 		)
 		(pin "2"
 			(uuid "bd9a421b-bceb-4aa2-a44d-f027527602e5")
+		)
+		(pin "8"
+			(uuid "d0722b4c-10d4-4c5b-8983-78d128690316")
 		)
 		(instances
 			(project ""
@@ -6523,7 +6571,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D5.0mm"
 			(at 176.53 92.71 0)
 			(effects
 				(font
@@ -6569,6 +6617,108 @@
 			(project ""
 				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
 					(reference "D2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Relay:Relay_SPST-NO")
+		(at 168.91 57.15 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ed6e6331-d5b1-41ac-84cb-f9439ad5adbe")
+		(property "Reference" "K1"
+			(at 168.91 41.91 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Relay_SPST-NO"
+			(at 168.91 44.45 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Locals:RELAY_G6DN-1A_OMR"
+			(at 170.18 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 168.91 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Relay SPST, normally open, EN50005"
+			(at 168.91 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Ref" "OMRON G6DN-1A-SL DC5"
+			(at 168.91 57.15 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "OMRON"
+			(at 168.91 57.15 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "https://www.lcsc.com/product-detail/C397208.html?s_z=n_C397208"
+			(at 168.91 57.15 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "14"
+			(uuid "e2d6ecd6-a0ef-4016-9c3f-d6856731edf7")
+		)
+		(pin "13"
+			(uuid "40cfc52a-3a40-41f6-9710-80d1c2c0cb01")
+		)
+		(pin "A1"
+			(uuid "0d7b5143-5ff5-4b65-b940-73599ec46033")
+		)
+		(pin "A2"
+			(uuid "2f8f4647-2170-40f0-9d5b-a7aefbce3c2a")
+		)
+		(instances
+			(project ""
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(reference "K1")
 					(unit 1)
 				)
 			)
@@ -6640,84 +6790,6 @@
 			(project ""
 				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
 					(reference "Q1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Relay:Relay_SPDT")
-		(at 168.91 57.15 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "fc895a1f-112d-4293-9898-a92fe1aab5cb")
-		(property "Reference" "K1"
-			(at 168.91 41.91 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Relay_SPDT"
-			(at 168.91 44.45 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 170.18 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 168.91 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Relay SPDT, monostable, EN50005"
-			(at 168.91 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "A1"
-			(uuid "ac049d32-c917-451c-922a-daa35e67fb1a")
-		)
-		(pin "A2"
-			(uuid "fddefdf5-fe2b-4821-890f-b2a219f4e058")
-		)
-		(pin "12"
-			(uuid "f2f3a830-4c83-4ce8-92b8-e42c23102e39")
-		)
-		(pin "11"
-			(uuid "fada8cda-dba2-430c-a948-42d977da5811")
-		)
-		(pin "14"
-			(uuid "cfd9c205-98da-4252-8597-c243fa19ec86")
-		)
-		(instances
-			(project ""
-				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-					(reference "K1")
 					(unit 1)
 				)
 			)
