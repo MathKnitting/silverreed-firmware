@@ -2385,25 +2385,23 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "K"
-				(at 11.43 3.81 0)
+			(property "Reference" "K1"
+				(at 15.24 0 90)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
 			(property "Value" "Relay_SPST-NO"
-				(at 11.43 1.27 0)
+				(at 12.7 0 90)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "Locals:RELAY_G6DN-1A_OMR"
 				(at 11.43 -1.27 0)
 				(effects
 					(font
@@ -2424,6 +2422,33 @@
 			)
 			(property "Description" "Relay SPST, normally open, EN50005"
 				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Ref" "OMRON G6DN-1A-SL DC5"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer" "OMRON"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC" "https://www.lcsc.com/product-detail/C397208.html?s_z=n_C397208"
+				(at 0 0 90)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2618,7 +2643,7 @@
 							)
 						)
 					)
-					(number "A1"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2636,7 +2661,7 @@
 							)
 						)
 					)
-					(number "A2"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2654,7 +2679,7 @@
 							)
 						)
 					)
-					(number "13"
+					(number "5"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2672,7 +2697,7 @@
 							)
 						)
 					)
-					(number "14"
+					(number "8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -6419,7 +6444,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Connector_DIN:DIN-704-M10"
+		(property "Footprint" "Locals:DIN-704-M10"
 			(at 113.03 71.12 0)
 			(effects
 				(font
@@ -6703,16 +6728,16 @@
 				(hide yes)
 			)
 		)
-		(pin "14"
+		(pin "1"
 			(uuid "e2d6ecd6-a0ef-4016-9c3f-d6856731edf7")
 		)
-		(pin "13"
+		(pin "5"
 			(uuid "40cfc52a-3a40-41f6-9710-80d1c2c0cb01")
 		)
-		(pin "A1"
+		(pin "8"
 			(uuid "0d7b5143-5ff5-4b65-b940-73599ec46033")
 		)
-		(pin "A2"
+		(pin "2"
 			(uuid "2f8f4647-2170-40f0-9d5b-a7aefbce3c2a")
 		)
 		(instances
