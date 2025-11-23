@@ -3382,12 +3382,20 @@
 		(uuid "e65bfc80-8bae-48e7-8156-6e7dae4f904f")
 	)
 	(no_connect
+		(at 21.59 69.85)
+		(uuid "28879b4a-91a4-4b2b-960a-9c0dfc645f4a")
+	)
+	(no_connect
 		(at 19.05 34.29)
 		(uuid "338679ea-1d4a-4eda-9ea9-845bd4d2d4ec")
 	)
 	(no_connect
 		(at 74.93 31.75)
 		(uuid "404d2de4-0b86-4868-b86c-1595f7fbb539")
+	)
+	(no_connect
+		(at 21.59 72.39)
+		(uuid "59b38e02-86c1-4227-86cd-93ee340c7dce")
 	)
 	(no_connect
 		(at 74.93 49.53)
@@ -3418,6 +3426,10 @@
 		(uuid "ac079895-6d21-4f5d-a049-0bebe1333ea6")
 	)
 	(no_connect
+		(at 74.93 26.67)
+		(uuid "cb199378-71e8-4c23-b291-e3bef547722a")
+	)
+	(no_connect
 		(at 74.93 74.93)
 		(uuid "cd0e9279-93db-44f9-8a53-8540ae6397d8")
 	)
@@ -3428,6 +3440,10 @@
 	(no_connect
 		(at 34.29 31.75)
 		(uuid "d181157c-7812-47e5-a0cf-9580c905fc86")
+	)
+	(no_connect
+		(at 74.93 29.21)
+		(uuid "d6865a03-01b7-45cb-8ae8-1b5457781411")
 	)
 	(no_connect
 		(at 21.59 64.77)
@@ -4435,7 +4451,7 @@
 		)
 		(uuid "873d2c88-519e-482f-a3ed-2484e5f9417e")
 	)
-	(label "SDA{slash}A4"
+	(label "A4"
 		(at 74.93 29.21 180)
 		(effects
 			(font
@@ -4525,7 +4541,7 @@
 		)
 		(uuid "c775d4e8-c37b-4e73-90c1-1c8d36333aac")
 	)
-	(label "SCL{slash}A5"
+	(label "A5"
 		(at 74.93 26.67 180)
 		(effects
 			(font
@@ -4610,7 +4626,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical"
 			(at 39.37 39.37 0)
 			(effects
 				(font
@@ -4886,7 +4902,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x10_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical"
 			(at 57.15 36.83 0)
 			(effects
 				(font
@@ -5039,7 +5055,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical"
 			(at 39.37 64.77 0)
 			(effects
 				(font
@@ -5119,7 +5135,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical"
 			(at 57.15 67.31 0)
 			(effects
 				(font
@@ -5271,7 +5287,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 163.83 90.932 90)
 			(effects
 				(font
@@ -5627,7 +5643,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 202.692 82.55 90)
 			(effects
 				(font
@@ -5827,7 +5843,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 163.83 101.092 90)
 			(effects
 				(font
