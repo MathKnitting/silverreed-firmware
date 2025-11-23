@@ -80,7 +80,7 @@
 		(aux_axis_origin 100 100)
 		(grid_origin 100 100)
 		(pcbplotparams
-			(layerselection 0x00000000_00000000_55555555_555555f5)
+			(layerselection 0x00000000_00000000_55555555_5555fff5)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
 			(disableapertmacros no)
 			(usegerberextensions no)

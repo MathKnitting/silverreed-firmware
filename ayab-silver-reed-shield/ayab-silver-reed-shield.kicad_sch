@@ -6254,7 +6254,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
+		(property "Footprint" "Locals:CP_6.3x11mm_horiz-R"
 			(at 174.9552 33.02 0)
 			(effects
 				(font
