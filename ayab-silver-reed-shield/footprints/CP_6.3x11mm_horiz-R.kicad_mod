@@ -1,23 +1,124 @@
-(module CP_6.3x11mm_horiz-R (layer F.Cu) (tedit 60167A62)
-  (descr "Capacitor, pol, cyl 6.3x11mm, horizontal right")
-  (fp_text reference C? (at 0 -4.7) (layer F.SilkS)
-    (effects (font (size 1.5 1.5) (thickness 0.3)))
-  )
-  (fp_text value CP_6.3x11mm_horiz-R (at 0 4.7) (layer F.SilkS)
-    (effects (font (size 1.5 1.5) (thickness 0.3)))
-  )
-  (fp_line (start -0.5 -2.8) (end 0.5 -2.8) (layer F.SilkS) (width 0.3))
-  (fp_line (start 13.2 -3.4) (end 13.2 3.4) (layer F.SilkS) (width 0.381))
-  (fp_line (start 13.2 3.4) (end 1.2 3.4) (layer F.SilkS) (width 0.381))
-  (fp_line (start 1.2 3.4) (end 1.2 -3.4) (layer F.SilkS) (width 0.381))
-  (fp_line (start 0 -1.25) (end 1.2 -1.25) (layer F.SilkS) (width 0.381))
-  (fp_line (start 0 1.25) (end 1.2 1.25) (layer F.SilkS) (width 0.381))
-  (fp_poly (pts (xy 13.2 -2.7) (xy 1.2 -2.7) (xy 1.2 -3.4) (xy 13.2 -3.4)) (layer F.SilkS) (width 0.381))
-  (pad 2 thru_hole circle (at 0 -1.25) (size 1.2 1.2) (drill 0.65) (layers *.Cu *.Mask F.SilkS))
-  (pad 1 thru_hole rect (at 0 1.25) (size 1.2 1.2) (drill 0.65) (layers *.Cu *.Mask F.SilkS))
-  (model walter/capacitors.3dshapes/cp_6.3x11mm_hor-r.wrl
-    (at (xyz 0 0 0))
-    (scale (xyz 1 1 1))
-    (rotate (xyz 0 0 0))
-  )
+(footprint "CP_6.3x11mm_horiz-R"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "Capacitor, pol, cyl 6.3x11mm, horizontal right")
+	(property "Reference" "C?"
+		(at 0 -4.7 0)
+		(layer "F.SilkS")
+		(uuid "76a699d0-cba7-44d9-98bb-e8408bce584a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "CP_6.3x11mm_horiz-R"
+		(at 0 4.7 0)
+		(layer "F.SilkS")
+		(uuid "7a5762f0-8740-4deb-a870-472b373e6f7f")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "96e06ee8-2596-494f-b0ad-eecd93e9dc64")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "fd51f467-b931-47c1-a5a0-0cc8eb08e3ed")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start 1.2 3.4)
+		(end 1.2 -3.4)
+		(stroke
+			(width 0.381)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "5d9c84c8-3742-4fe4-b77f-14ab76a0d4cb")
+	)
+	(fp_line
+		(start 13.2 -3.4)
+		(end 13.2 3.4)
+		(stroke
+			(width 0.381)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "61ade75a-0e9b-48d9-982f-2bf582a9e194")
+	)
+	(fp_line
+		(start 13.2 3.4)
+		(end 1.2 3.4)
+		(stroke
+			(width 0.381)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f6bc4d5b-8a1c-4a4e-9187-223083d6c8fe")
+	)
+	(fp_poly
+		(pts
+			(xy 13.2 -2.7) (xy 1.2 -2.7) (xy 1.2 -3.4) (xy 13.2 -3.4)
+		)
+		(stroke
+			(width 0.381)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "e5655a70-44a6-4125-aac9-b28813765b41")
+	)
+	(pad "1" thru_hole rect
+		(at 0 1.25)
+		(size 1.8 1.8)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "3de2feac-37da-4c2e-b3cf-a0c70f09fcb4")
+	)
+	(pad "2" thru_hole circle
+		(at 0 -1.25)
+		(size 1.8 1.8)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "b9c1a6ec-0d1d-4aab-8cd1-66e7c6ec27bd")
+	)
+	(embedded_fonts no)
+	(model "walter/capacitors.3dshapes/cp_6.3x11mm_hor-r.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )

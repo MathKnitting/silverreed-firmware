@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 3.048,
-          "height": 4.064,
-          "width": 4.064
+          "drill": 1.1,
+          "height": 2.2,
+          "width": 2.2
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -59,7 +59,24 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "silk_edge_clearance|100000000|75400000|16738e8d-f64a-4520-b480-307e17fc6e64|ea1db534-da23-4575-a9ac-cad682d41810",
+          "Normal for the jack"
+        ],
+        [
+          "silk_edge_clearance|100000000|84600000|16738e8d-f64a-4520-b480-307e17fc6e64|1d2edfc3-1a0c-4920-90d1-c054dd0afd7e",
+          "Normal for jack"
+        ],
+        [
+          "silk_edge_clearance|164660000|47820000|a1531b39-8dae-4637-9a8d-49791182f594|ba9451fa-01d1-4ce1-af52-db4eb728bd63",
+          "it ok"
+        ],
+        [
+          "silk_edge_clearance|164880000|48040000|a1531b39-8dae-4637-9a8d-49791182f594|67a504b4-3d10-4572-bd8b-76f856481557",
+          ""
+        ]
+      ],
       "meta": {
         "filename": "board_design_settings.json",
         "version": 2
