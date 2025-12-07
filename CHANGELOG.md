@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/MathKnitting/silverreed-firmware/compare/v1.1.0...v1.1.1) (2025-12-07)
+
+
+### Bug Fixes
+
+* invert din pins ([#27](https://github.com/MathKnitting/silverreed-firmware/issues/27)) ([6695316](https://github.com/MathKnitting/silverreed-firmware/commit/669531643c14b87d1e669180c153ba5a85fb1aad))
+
 # [1.1.0](https://github.com/MathKnitting/silverreed-firmware/compare/v1.0.0...v1.1.0) (2025-03-27)
 
 
