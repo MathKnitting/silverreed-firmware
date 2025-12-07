@@ -177,3 +177,4 @@ cmake-build-*/
 
 .python-version
 .vscode/
+.DS_Store

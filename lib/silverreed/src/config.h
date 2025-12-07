@@ -7,7 +7,6 @@
 #define ARDUINO_CONFIG_H
 
 namespace PinsCorrespondance {
-const int led_builtin = 13;
 const int ND1 = 2;             // Sets the position of the pattern (In)
 const int KSL = 3;             // Point CAM detection (In)
 const int DOB = 4;             // Data Out Buffer (Out)
