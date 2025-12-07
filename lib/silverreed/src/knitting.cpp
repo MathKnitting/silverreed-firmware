@@ -117,11 +117,13 @@ void KnittingProcess_::knitting_loop() {
       break;
 
     case WaitingStart:
+    {
       // Waiting for the carriage to move to start the knitting process
       this->start_knitting_if_carriage_moves(current_carriage_state);
       break;
-
+    }
     case Knitting:
+    {
       // Knitting mode
 
       // Always request the first row when the knitting process starts
@@ -156,7 +158,7 @@ void KnittingProcess_::knitting_loop() {
         this->carriage.set_DOB_state(LOW);
         Ayab.sendReqLine(this->current_row);
       }
-
+    }
     default:
       break;
   }
