@@ -23,18 +23,18 @@ class KnittingProcess_ {
   void start_knitting_if_carriage_moves(CarriageState carriage_state);
 
  public:
-  static KnittingProcess_ &getInstance();
+  static KnittingProcess_& getInstance();
 
-  KnittingProcess_(const KnittingProcess_ &) = delete;
-  KnittingProcess_ &operator=(const KnittingProcess_ &) = delete;
+  KnittingProcess_(const KnittingProcess_&) = delete;
+  KnittingProcess_& operator=(const KnittingProcess_&) = delete;
 
   void knitting_loop();
   void reset();
   bool init();
   bool start_knitting(uint8_t start_needle, uint8_t end_needle,
                       bool continuousReportingEnabled, bool beeperEnabled);
-  void set_next_line(uint8_t line_number, bool last_line_flag, uint8_t *line);
+  void set_next_line(uint8_t line_number, bool last_line_flag, uint8_t* line);
 };
 
-extern KnittingProcess_ &KnittingProcess;
+extern KnittingProcess_& KnittingProcess;
 #endif

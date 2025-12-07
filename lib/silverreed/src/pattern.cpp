@@ -26,7 +26,7 @@ void Pattern::set_needle_range(uint8_t start_needle, uint8_t end_needle) {
   this->end_offset = end_needle;
 }
 
-void Pattern::set_buffer(uint8_t *buffer) {
+void Pattern::set_buffer(uint8_t* buffer) {
   /**
    * Set the buffer of the pattern.
    *

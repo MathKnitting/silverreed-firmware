@@ -48,14 +48,14 @@ using AYAB_API_t = enum AYAB_API;
 
 class Ayab_ : public Communicator {
  public:
-  static Ayab_ &getInstance();
+  static Ayab_& getInstance();
 
-  Ayab_(const Ayab_ &) = delete;
-  Ayab_ &operator=(const Ayab_ &) = delete;
+  Ayab_(const Ayab_&) = delete;
+  Ayab_& operator=(const Ayab_&) = delete;
 
   void init();
-  static void receive(const uint8_t *buffer, size_t size);
-  void send(const uint8_t *buffer, size_t size);
+  static void receive(const uint8_t* buffer, size_t size);
+  void send(const uint8_t* buffer, size_t size);
   void update();
 
   void sendIndState(CarriageDirection direction);
@@ -67,24 +67,24 @@ class Ayab_ : public Communicator {
   PacketSerial_<SLIP, SLIP::END, MAX_MSG_BUFFER_LEN> m_packetSerial;
 
   // Different calls
-  void reqInfo(const uint8_t *buffer, size_t size);
-  void reqStart(const uint8_t *buffer, size_t size);
-  void cnfLine(const uint8_t *buffer, size_t size);
-  void reqTest(const uint8_t *buffer, size_t size);
-  void reqInit(const uint8_t *buffer, size_t size);
-  void reqQuit(const uint8_t *buffer, size_t size);
-  void helpCmd(const uint8_t *buffer, size_t size);
-  void sendCmd(const uint8_t *buffer, size_t size);
-  void beepCmd(const uint8_t *buffer, size_t size);
-  void readCmd(const uint8_t *buffer, size_t size);
-  void autoCmd(const uint8_t *buffer, size_t size);
-  void testCmd(const uint8_t *buffer, size_t size);
-  void quitCmd(const uint8_t *buffer, size_t size);
-  void setCmd(const uint8_t *buffer, size_t size);
-  uint8_t CRC8(const uint8_t *buffer, size_t len) const;
+  void reqInfo(const uint8_t* buffer, size_t size);
+  void reqStart(const uint8_t* buffer, size_t size);
+  void cnfLine(const uint8_t* buffer, size_t size);
+  void reqTest(const uint8_t* buffer, size_t size);
+  void reqInit(const uint8_t* buffer, size_t size);
+  void reqQuit(const uint8_t* buffer, size_t size);
+  void helpCmd(const uint8_t* buffer, size_t size);
+  void sendCmd(const uint8_t* buffer, size_t size);
+  void beepCmd(const uint8_t* buffer, size_t size);
+  void readCmd(const uint8_t* buffer, size_t size);
+  void autoCmd(const uint8_t* buffer, size_t size);
+  void testCmd(const uint8_t* buffer, size_t size);
+  void quitCmd(const uint8_t* buffer, size_t size);
+  void setCmd(const uint8_t* buffer, size_t size);
+  uint8_t CRC8(const uint8_t* buffer, size_t len) const;
   void send_cnfStart(bool error);
 };
 
-extern Ayab_ &Ayab;
+extern Ayab_& Ayab;
 
 #endif

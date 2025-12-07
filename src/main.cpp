@@ -13,7 +13,6 @@ void setup() {
    * Setup run at the start of the Arduino.
    */
   // Set the pin modes.
-  pinMode(LED_BUILTIN, OUTPUT);
   pinMode(PinsCorrespondance::ND1, INPUT_PULLUP);  // not used for now
   pinMode(PinsCorrespondance::KSL, INPUT_PULLUP);
   pinMode(PinsCorrespondance::DOB, OUTPUT);
