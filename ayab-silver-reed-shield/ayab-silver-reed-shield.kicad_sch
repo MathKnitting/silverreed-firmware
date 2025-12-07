@@ -213,7 +213,7 @@
 					(justify right)
 				)
 			)
-			(property "Footprint" "Connector_DIN:DIN-704-M10"
+			(property "Footprint" "Locals:DIN-704-M10"
 				(at 0 0 0)
 				(effects
 					(font
@@ -545,10 +545,10 @@
 				(pin passive line
 					(at 1.27 -7.62 90)
 					(length 2.54)
-					(name "GNG"
+					(name "GND"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 0 0)
 							)
 						)
 					)
@@ -5220,6 +5220,7 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
 			)
 		)
 		(property "Footprint" ""
@@ -5423,7 +5424,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_T-1_P5.08mm_Horizontal"
+		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal"
 			(at 168.91 80.01 0)
 			(effects
 				(font
@@ -6236,7 +6237,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aeb2cca9-ec6a-4f16-8839-e6748d4cc7e8")
-		(property "Reference" "C2"
+		(property "Reference" "C1"
 			(at 177.8 27.0509 0)
 			(effects
 				(font
@@ -6290,7 +6291,7 @@
 		(instances
 			(project ""
 				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-					(reference "C2")
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -6791,7 +6792,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PCM_Package_TO_SOT_THT_AKL:TO-92_Inline_Wide_EBC"
+		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
 			(at 201.93 59.69 0)
 			(effects
 				(font
