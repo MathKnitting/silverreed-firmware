@@ -10,9 +10,9 @@
 
 #include <Arduino.h>
 
-Ayab_ &Ayab = Ayab.getInstance();
+Ayab_& Ayab = Ayab.getInstance();
 
-Ayab_ &Ayab_::getInstance() {
+Ayab_& Ayab_::getInstance() {
   /**
    * Get the singleton instance of Ayab.
    */
@@ -31,7 +31,7 @@ void Ayab_::init() {
   m_packetSerial.setPacketHandler(Ayab.receive);
 };
 
-void Ayab_::receive(const uint8_t *buffer, size_t size) {
+void Ayab_::receive(const uint8_t* buffer, size_t size) {
   /**
    * Receive a packet from the serial port and process it.
    *
@@ -100,7 +100,7 @@ void Ayab_::receive(const uint8_t *buffer, size_t size) {
   };
 };
 
-void Ayab_::send(const uint8_t *buffer, size_t size) {
+void Ayab_::send(const uint8_t* buffer, size_t size) {
   /**
    * Send a packet to the serial port. (Private method)
    *
@@ -119,7 +119,7 @@ void Ayab_::update() {
   m_packetSerial.update();
 };
 
-void Ayab_::reqInfo(const uint8_t *buffer, size_t size) {
+void Ayab_::reqInfo(const uint8_t* buffer, size_t size) {
   // Max. length of suffix string: 16 bytes + \0
   // `payload` will be allocated on stack since length is compile-time constant
   uint8_t payload[22];
@@ -128,11 +128,11 @@ void Ayab_::reqInfo(const uint8_t *buffer, size_t size) {
   payload[2] = 0;
   payload[3] = 0;
   payload[4] = 0;
-  strncpy((char *)payload + 5, "indev", 16);
+  strncpy((char*)payload + 5, "indev", 16);
   send(payload, 22);
 };
 
-void Ayab_::reqStart(const uint8_t *buffer, size_t size) {
+void Ayab_::reqStart(const uint8_t* buffer, size_t size) {
   if (size < 5U) {
     // Need 5 bytes from buffer below.
     // todo send_cnfStart(ErrorCode::expected_longer_message);
@@ -165,7 +165,7 @@ void Ayab_::send_cnfStart(bool error) {
   send(payload, 2);
 }
 
-void Ayab_::cnfLine(const uint8_t *buffer, size_t size) {
+void Ayab_::cnfLine(const uint8_t* buffer, size_t size) {
   uint8_t len_line_buffer = 25U;
   if (size < len_line_buffer + 5U) {
     // message is too short
@@ -205,11 +205,11 @@ void Ayab_::sendReqLine(uint8_t line) {
   send(payload, 2);
 }
 
-void Ayab_::reqTest(const uint8_t *buffer, size_t size) {
+void Ayab_::reqTest(const uint8_t* buffer, size_t size) {
   // TODO
   return;
 }
-void Ayab_::reqInit(const uint8_t *buffer, size_t size) {
+void Ayab_::reqInit(const uint8_t* buffer, size_t size) {
   uint8_t payload[2];
   payload[0] = static_cast<uint8_t>(AYAB_API::cnfInit);
   if (KnittingProcess.init()) {
@@ -220,39 +220,39 @@ void Ayab_::reqInit(const uint8_t *buffer, size_t size) {
   send(payload, 2);
   delay(500);
 }
-void Ayab_::reqQuit(const uint8_t *buffer, size_t size) {
+void Ayab_::reqQuit(const uint8_t* buffer, size_t size) {
   // TODO
   return;
 }
-void Ayab_::helpCmd(const uint8_t *buffer, size_t size) {
+void Ayab_::helpCmd(const uint8_t* buffer, size_t size) {
   // TODO
   return;
 }
-void Ayab_::sendCmd(const uint8_t *buffer, size_t size) {
+void Ayab_::sendCmd(const uint8_t* buffer, size_t size) {
   // TODO
   return;
 }
-void Ayab_::beepCmd(const uint8_t *buffer, size_t size) {
+void Ayab_::beepCmd(const uint8_t* buffer, size_t size) {
   // TODO
   return;
 }
-void Ayab_::readCmd(const uint8_t *buffer, size_t size) {
+void Ayab_::readCmd(const uint8_t* buffer, size_t size) {
   // TODO
   return;
 }
-void Ayab_::autoCmd(const uint8_t *buffer, size_t size) {
+void Ayab_::autoCmd(const uint8_t* buffer, size_t size) {
   // TODO
   return;
 }
-void Ayab_::testCmd(const uint8_t *buffer, size_t size) {
+void Ayab_::testCmd(const uint8_t* buffer, size_t size) {
   // TODO
   return;
 }
-void Ayab_::quitCmd(const uint8_t *buffer, size_t size) {
+void Ayab_::quitCmd(const uint8_t* buffer, size_t size) {
   // TODO
   return;
 }
-void Ayab_::setCmd(const uint8_t *buffer, size_t size) {
+void Ayab_::setCmd(const uint8_t* buffer, size_t size) {
   // TODO
   return;
 }
@@ -277,10 +277,10 @@ void Ayab_::sendIndState(CarriageDirection direction) {
       0x00,                        // carriage position (needle number) TODO
       carriage_direction,          // 1 left, 2 right
   };
-  send(static_cast<uint8_t *>(payload), 10);
+  send(static_cast<uint8_t*>(payload), 10);
 }
 
-uint8_t Ayab_::CRC8(const uint8_t *buffer, size_t len) const {
+uint8_t Ayab_::CRC8(const uint8_t* buffer, size_t len) const {
   uint8_t crc = 0x00U;
 
   while (len--) {

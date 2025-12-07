@@ -5,9 +5,9 @@
 #include "debug.h"
 #include "pattern.h"
 
-KnittingProcess_ &KnittingProcess = KnittingProcess.getInstance();
+KnittingProcess_& KnittingProcess = KnittingProcess.getInstance();
 
-KnittingProcess_ &KnittingProcess_::getInstance() {
+KnittingProcess_& KnittingProcess_::getInstance() {
   static KnittingProcess_ instance;
   return instance;
 }
@@ -87,7 +87,7 @@ void KnittingProcess_::start_knitting_if_carriage_moves(
 }
 
 void KnittingProcess_::set_next_line(uint8_t line_number, bool last_line_flag,
-                                     uint8_t *line) {
+                                     uint8_t* line) {
   /**
    * Set the next line of the pattern.
    * This function is called when Ayab sends a line of the pattern (cnfLine).
@@ -120,14 +120,12 @@ void KnittingProcess_::knitting_loop() {
       // nothing to do in this case
       break;
 
-    case WaitingStart:
-    {
+    case WaitingStart: {
       // Waiting for the carriage to move to start the knitting process
       this->start_knitting_if_carriage_moves(current_carriage_state);
       break;
     }
-    case Knitting:
-    {
+    case Knitting: {
       // Knitting mode
 
       // Always request the first row when the knitting process starts
