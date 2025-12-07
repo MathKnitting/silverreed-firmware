@@ -24,6 +24,7 @@ void KnittingProcess_::reset() {
 
   this->current_needle_index =
       -1;  // -1 means that the carriage is not on a needle of the pattern
+  this->carriage.power_solenoid(LOW);
   DEBUG_WAIT_START();
 }
 
@@ -81,6 +82,7 @@ void KnittingProcess_::start_knitting_if_carriage_moves(
       carriage_state.is_start_of_needle(this->previousCarriageState)) {
     DEBUG_PRINTLN("Carriage moving, start knitting");
     Ayab.getInstance().sendIndState(carriage_state.get_direction());
+    this->carriage.power_solenoid(HIGH);
   }
 }
 
@@ -96,6 +98,8 @@ void KnittingProcess_::set_next_line(uint8_t line_number, bool last_line_flag,
    */
   this->current_row = line_number + 1;
   this->pattern.set_buffer(line);
+  this->is_last_line = last_line_flag;
+
   return;
 }
 
@@ -129,7 +133,7 @@ void KnittingProcess_::knitting_loop() {
       // Always request the first row when the knitting process starts
       if (this->current_row == 0) {
         DEBUG_PRINTLN("Requesting first row");
-        Ayab.sendReqLine(1);
+        Ayab.sendReqLine(0);
         this->current_row++;  // need to explicitly increment the row here; if
                               // not the row will be 0
         // and the next loop iteration will request the first row again if ayab
@@ -154,9 +158,15 @@ void KnittingProcess_::knitting_loop() {
       } else if (current_carriage_state.is_start_out_of_pattern(
                      this->previousCarriageState)) {
         this->current_needle_index = -1;
-        // out of pattern section (KSL HIGH), the DOB must be low
+        // out of pattern section (KSL HIGH), the DOB must be low to avoid
+        // eating the solenoids.
         this->carriage.set_DOB_state(LOW);
-        Ayab.sendReqLine(this->current_row);
+        if (!this->is_last_line) {
+          Ayab.sendReqLine(this->current_row);
+        } else {
+          // reset the knitting process if the last row was done
+          this->reset();
+        }
       }
     }
     default:
