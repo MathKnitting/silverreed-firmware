@@ -11,6 +11,7 @@
 
 #include "config.h"
 #include "test_carriage.h"
+#include "test_integration.h"
 #include "test_knitting.h"
 
 void setup() {
@@ -30,6 +31,7 @@ void setup() {
 void loop() {
   RUN_MODULE(run_module_carriage_tests);
   RUN_MODULE(run_module_knitting_tests);
+  RUN_MODULE(run_module_integration_tests);
 
   UNITY_END();
 }

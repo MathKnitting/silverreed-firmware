@@ -22,6 +22,9 @@ class Pattern {
   int needle_index(int needle_in_pattern, CarriageDirection direction);
   void set_needle_range(uint8_t start_needle, uint8_t end_needle);
   void set_buffer(uint8_t* buffer);
+  uint8_t* get_buffer() const { return buffer; }
+  int get_start_offset() const { return start_offset; }
+  int get_end_offset() const { return end_offset; }
 };
 
 #endif

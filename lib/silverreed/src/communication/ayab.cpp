@@ -167,12 +167,6 @@ void Ayab_::send_cnfStart(bool error) {
 
 void Ayab_::cnfLine(const uint8_t* buffer, size_t size) {
   uint8_t len_line_buffer = 25U;
-  if (size < len_line_buffer + 5U) {
-    // message is too short
-    // TODO(sl): handle error?
-    // TODO(TP): send repeat request with error code?
-    return;
-  }
 
   uint8_t line_number = buffer[1];
   /* uint8_t color = buffer[2];  */  // currently unused
@@ -183,7 +177,7 @@ void Ayab_::cnfLine(const uint8_t* buffer, size_t size) {
 
   for (uint8_t i = 0U; i < len_line_buffer; i++) {
     // Values have to be inverted because of needle states
-    line_buffer[i] = ~buffer[i + 4];
+    line_buffer[i] = buffer[i + 4];  // todo reinvert ???
   }
 
   uint8_t crc8 = buffer[len_line_buffer + 4];
