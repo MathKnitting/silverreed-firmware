@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/MathKnitting/silverreed-firmware/compare/v1.1.1...v1.2.0) (2025-12-31)
+
+
+### Features
+
+* add locals symbols ([fd517f3](https://github.com/MathKnitting/silverreed-firmware/commit/fd517f3c698f4c5722ead6b4d4d3c90bd071c17b))
+
 # [1.2.0](https://github.com/MathKnitting/silverreed-firmware/compare/v1.1.1...v1.2.0) (2025-12-07)
 
 
