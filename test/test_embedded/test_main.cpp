@@ -10,9 +10,11 @@
 #include <unity.h>
 
 #include "config.h"
+#include "test_ayab.h"
 #include "test_carriage.h"
 #include "test_integration.h"
 #include "test_knitting.h"
+#include "test_pattern.h"
 
 void setup() {
   // NOTE!!! Wait for >2 secs
@@ -26,11 +28,14 @@ void setup() {
   pinMode(PinsCorrespondance::CCP, OUTPUT);
   pinMode(PinsCorrespondance::HOK, OUTPUT);
   pinMode(PinsCorrespondance::KSL, OUTPUT);
+  pinMode(PinsCorrespondance::SOLENOID_POWER, OUTPUT);
 }
 
 void loop() {
   RUN_MODULE(run_module_carriage_tests);
+  RUN_MODULE(run_module_pattern_tests);
   RUN_MODULE(run_module_knitting_tests);
+  RUN_MODULE(run_module_ayab_tests);
   RUN_MODULE(run_module_integration_tests);
 
   UNITY_END();

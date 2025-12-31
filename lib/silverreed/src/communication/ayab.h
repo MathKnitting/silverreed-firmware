@@ -60,6 +60,7 @@ class Ayab_ : public Communicator {
 
   void sendIndState(CarriageDirection direction);
   void sendReqLine(uint8_t line);
+  uint8_t CRC8(const uint8_t* buffer, size_t len) const;
 
  private:
   Ayab_() = default;
@@ -81,7 +82,6 @@ class Ayab_ : public Communicator {
   void testCmd(const uint8_t* buffer, size_t size);
   void quitCmd(const uint8_t* buffer, size_t size);
   void setCmd(const uint8_t* buffer, size_t size);
-  uint8_t CRC8(const uint8_t* buffer, size_t len) const;
   void send_cnfStart(bool error);
 };
 

@@ -34,7 +34,7 @@ class KnittingProcess_ {
   bool start_knitting(uint8_t start_needle, uint8_t end_needle,
                       bool continuousReportingEnabled, bool beeperEnabled);
   void set_next_line(uint8_t line_number, bool last_line_flag, uint8_t* line);
-  uint16_t get_current_needle_index() const { return current_needle_index; }
+  int get_current_needle_index() const { return current_needle_index; }
   const Pattern& get_pattern() const { return pattern; }
   uint8_t get_start_needle() const { return start_needle; }
   uint8_t get_end_needle() const { return end_needle; }

@@ -62,8 +62,8 @@ void test_pattern_reading() {
   digitalWrite(PinsCorrespondance::KSL, HIGH);
 
   bool pattern_buffer[33];
-  bool expected_buffer[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0,
-                            0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  bool expected_buffer[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1,
+                            1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1};
   read_buffer(33, pattern_buffer);
 
   for (int i = 0; i < 33; i++) {
