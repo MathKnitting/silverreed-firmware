@@ -5,12 +5,12 @@
 
 Pattern::Pattern() {
   /**
-   * Init the buffer to a default value.
-   * By default, the buffer is set to 0s and the full machine (0 to 200
-   * needles).
+   * Init the pattern with default values.
+   * By default, the needle range is set to the full machine (0 to 200 needles).
+   * The buffer pointer is initialized to nullptr and must be set via
+   * set_buffer() before calling get_needle_state().
    */
-  uint8_t line_buffer[25U] = {0};
-  this->buffer = line_buffer;
+  this->buffer = nullptr;
   this->start_offset = 0;
   this->end_offset = 200;
 }

@@ -167,19 +167,20 @@ void Ayab_::send_cnfStart(bool error) {
 
 void Ayab_::cnfLine(const uint8_t* buffer, size_t size) {
   uint8_t len_line_buffer = 25U;
-  if (size < len_line_buffer + 5U) {
-    // message is too short
-    // TODO(sl): handle error?
-    // TODO(TP): send repeat request with error code?
-    return;
-  }
 
   uint8_t line_number = buffer[1];
   /* uint8_t color = buffer[2];  */  // currently unused
   uint8_t flags = buffer[3];
   bool flag_last_line = bitRead(flags, 0U);
 
-  uint8_t line_buffer[MAX_LINE_BUFFER_LEN] = {0};
+  // Static buffer to persist beyond function scope
+  // Pattern class stores pointer to this buffer
+  static uint8_t line_buffer[MAX_LINE_BUFFER_LEN];
+
+  // Clear and fill the buffer
+  for (uint8_t i = 0U; i < MAX_LINE_BUFFER_LEN; i++) {
+    line_buffer[i] = 0;
+  }
 
   for (uint8_t i = 0U; i < len_line_buffer; i++) {
     // Values have to be inverted because of needle states

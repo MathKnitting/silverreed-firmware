@@ -23,7 +23,7 @@ class CarriageState {
 class Carriage {
  private:
   int DOB_state = LOW;
-  int power_solenoid_state = NULL;
+  int power_solenoid_state = LOW;
   unsigned long solenoid_change_time;
 
  public:
