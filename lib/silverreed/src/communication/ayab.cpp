@@ -173,11 +173,18 @@ void Ayab_::cnfLine(const uint8_t* buffer, size_t size) {
   uint8_t flags = buffer[3];
   bool flag_last_line = bitRead(flags, 0U);
 
-  uint8_t line_buffer[MAX_LINE_BUFFER_LEN] = {0};
+  // Static buffer to persist beyond function scope
+  // Pattern class stores pointer to this buffer
+  static uint8_t line_buffer[MAX_LINE_BUFFER_LEN];
+
+  // Clear and fill the buffer
+  for (uint8_t i = 0U; i < MAX_LINE_BUFFER_LEN; i++) {
+    line_buffer[i] = 0;
+  }
 
   for (uint8_t i = 0U; i < len_line_buffer; i++) {
     // Values have to be inverted because of needle states
-    line_buffer[i] = buffer[i + 4];  // todo reinvert ???
+    line_buffer[i] = ~buffer[i + 4];
   }
 
   uint8_t crc8 = buffer[len_line_buffer + 4];

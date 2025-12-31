@@ -14,27 +14,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-
       - name: Set up Python 3.12
         uses: actions/setup-python@v4
         with:
           python-version: "3.12"
-          cache: "poetry"
 
-      - name: Install dependencies using poetry
-        run: poetry install --no-root
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --all-groups
 
       - name: Initiate PlatformIO
-        run: poetry run task init
+        run: uv run task init
 
       # Install pre-commit linting dependencies.
       - name: Install clang
         run: sudo apt-get install clang clang-format clang-tidy
 
       - name: Run pre-commit hooks
-        run: poetry run task lint
+        run: uv run task lint
 
       - name: Build PlatformIO
-        run: poetry run task build
+        run: uv run task build
