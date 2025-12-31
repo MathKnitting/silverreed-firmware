@@ -11,7 +11,18 @@ class CarriageState {
   bool KSL;
   bool DOB;
   bool HOK;
+
+  // Default constructor - initializes all pins to LOW
+  // Useful for testing and creating previous state snapshots
   CarriageState();
+
+  // Explicit constructor with pin values
+  // Use this when you have already read the pin values
+  CarriageState(bool ccp, bool ksl, bool dob, bool hok);
+
+  // Static factory method to read current state from hardware pins
+  // This is the preferred method for production code
+  static CarriageState read_from_pins();
 
   bool is_in_pattern_section();
   bool is_start_out_of_pattern(CarriageState previous_state);

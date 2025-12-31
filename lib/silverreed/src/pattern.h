@@ -25,6 +25,7 @@ class Pattern {
   uint8_t* get_buffer() const { return buffer; }
   int get_start_offset() const { return start_offset; }
   int get_end_offset() const { return end_offset; }
+  bool is_buffer_set() const { return buffer != nullptr; }
 };
 
 #endif

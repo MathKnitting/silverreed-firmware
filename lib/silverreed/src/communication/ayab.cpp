@@ -10,6 +10,9 @@
 
 #include <Arduino.h>
 
+#include "config.h"
+#include "debug.h"
+
 Ayab_& Ayab = Ayab.getInstance();
 
 Ayab_& Ayab_::getInstance() {
@@ -135,19 +138,20 @@ void Ayab_::reqInfo(const uint8_t* buffer, size_t size) {
 void Ayab_::reqStart(const uint8_t* buffer, size_t size) {
   if (size < 5U) {
     // Need 5 bytes from buffer below.
-    // todo send_cnfStart(ErrorCode::expected_longer_message);
+    send_cnfStart(ErrorCode::EXPECTED_LONGER_MESSAGE);
     return;
   }
 
   uint8_t start_needle = buffer[1];
   uint8_t stop_needle = buffer[2];
-  auto continuous_reporting_enabled = static_cast<bool>(buffer[3] & 1);
-  auto beeper_enabled = static_cast<bool>(buffer[3] & 2);
+  auto continuous_reporting_enabled =
+      static_cast<bool>(buffer[3] & CONTINUOUS_REPORTING_FLAG);
+  auto beeper_enabled = static_cast<bool>(buffer[3] & BEEPER_ENABLED_FLAG);
 
   uint8_t crc8 = buffer[4];
   // Check crc on bytes 0-4 of buffer.
   if (crc8 != CRC8(buffer, 4)) {
-    // todo send_cnfStart(ErrorCode::checksum_error);
+    send_cnfStart(ErrorCode::CHECKSUM_ERROR);
     return;
   }
 
@@ -155,23 +159,29 @@ void Ayab_::reqStart(const uint8_t* buffer, size_t size) {
   // memset(_b, 0xFF, MAX_LINE_BUFFER_LEN);
   bool ok = KnittingProcess.start_knitting(
       start_needle, stop_needle, continuous_reporting_enabled, beeper_enabled);
-  send_cnfStart(ok == false);
+  send_cnfStart(ok ? ErrorCode::SUCCESS : ErrorCode::INVALID_STATE);
 }
 
-void Ayab_::send_cnfStart(bool error) {
+void Ayab_::send_cnfStart(ErrorCode error_code) {
   uint8_t payload[2];
   payload[0] = static_cast<uint8_t>(AYAB_API::cnfStart);
-  payload[1] = static_cast<uint8_t>(error);
+  payload[1] = static_cast<uint8_t>(error_code);
   send(payload, 2);
 }
 
 void Ayab_::cnfLine(const uint8_t* buffer, size_t size) {
-  uint8_t len_line_buffer = 25U;
+  uint8_t len_line_buffer = MAX_LINE_BUFFER_LEN;
+
+  // Validate message size
+  if (size < len_line_buffer + 5U) {
+    DEBUG_PRINTLN("cnfLine: message too short");
+    return;
+  }
 
   uint8_t line_number = buffer[1];
   /* uint8_t color = buffer[2];  */  // currently unused
   uint8_t flags = buffer[3];
-  bool flag_last_line = bitRead(flags, 0U);
+  bool flag_last_line = static_cast<bool>(flags & LAST_LINE_FLAG);
 
   // Static buffer to persist beyond function scope
   // Pattern class stores pointer to this buffer
@@ -190,8 +200,8 @@ void Ayab_::cnfLine(const uint8_t* buffer, size_t size) {
   uint8_t crc8 = buffer[len_line_buffer + 4];
   // Calculate checksum of buffer contents
   if (crc8 != CRC8(buffer, len_line_buffer + 4)) {
-    // TODO(sl): handle checksum error?
-    // TODO(TP): send repeat request with error code?
+    DEBUG_PRINTLN("cnfLine: CRC error");
+    // Note: In the future, could send a repeat request with error code
     return;
   }
 
@@ -219,7 +229,7 @@ void Ayab_::reqInit(const uint8_t* buffer, size_t size) {
     payload[1] = 1;
   }
   send(payload, 2);
-  delay(500);
+  delay(INIT_DELAY_MS);
 }
 void Ayab_::reqQuit(const uint8_t* buffer, size_t size) {
   // TODO
@@ -288,12 +298,12 @@ uint8_t Ayab_::CRC8(const uint8_t* buffer, size_t len) const {
     uint8_t extract = *buffer;
     buffer++;
 
-    for (uint8_t tempi = 8U; tempi; tempi--) {
+    for (uint8_t tempi = BITS_PER_BYTE; tempi; tempi--) {
       uint8_t sum = (crc ^ extract) & 0x01U;
       crc >>= 1U;
 
       if (sum) {
-        crc ^= 0x8CU;
+        crc ^= CRC8_POLYNOMIAL;
       }
       extract >>= 1U;
     }

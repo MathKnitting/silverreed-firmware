@@ -6,31 +6,33 @@
 
 void test_carriage_direction() {
   digitalWrite(PinsCorrespondance::HOK, HIGH);
-  TEST_ASSERT_EQUAL(CarriageState().get_direction(), TO_LEFT);
+  TEST_ASSERT_EQUAL(CarriageState::read_from_pins().get_direction(), TO_LEFT);
   digitalWrite(PinsCorrespondance::HOK, LOW);
-  TEST_ASSERT_EQUAL(CarriageState().get_direction(), TO_RIGHT);
+  TEST_ASSERT_EQUAL(CarriageState::read_from_pins().get_direction(), TO_RIGHT);
 }
 
 void test_is_in_pattern_section() {
   digitalWrite(PinsCorrespondance::KSL, HIGH);
-  TEST_ASSERT_EQUAL(CarriageState().is_in_pattern_section(), true);
+  TEST_ASSERT_EQUAL(CarriageState::read_from_pins().is_in_pattern_section(),
+                    true);
   digitalWrite(PinsCorrespondance::KSL, LOW);
-  TEST_ASSERT_EQUAL(CarriageState().is_in_pattern_section(), false);
+  TEST_ASSERT_EQUAL(CarriageState::read_from_pins().is_in_pattern_section(),
+                    false);
 }
 
 void test_is_start_of_needle() {
   // Set initial state: CCP LOW
   digitalWrite(PinsCorrespondance::CCP, LOW);
-  CarriageState previous_state = CarriageState();
+  CarriageState previous_state = CarriageState::read_from_pins();
 
   // CCP still LOW - not start of needle
   digitalWrite(PinsCorrespondance::CCP, LOW);
-  CarriageState current_state = CarriageState();
+  CarriageState current_state = CarriageState::read_from_pins();
   TEST_ASSERT_FALSE(current_state.is_start_of_needle(previous_state));
 
   // CCP transitions to HIGH - start of needle
   digitalWrite(PinsCorrespondance::CCP, HIGH);
-  current_state = CarriageState();
+  current_state = CarriageState::read_from_pins();
   TEST_ASSERT_TRUE(current_state.is_start_of_needle(previous_state));
 
   // Update previous state
@@ -38,28 +40,28 @@ void test_is_start_of_needle() {
 
   // CCP still HIGH - not start of needle
   digitalWrite(PinsCorrespondance::CCP, HIGH);
-  current_state = CarriageState();
+  current_state = CarriageState::read_from_pins();
   TEST_ASSERT_FALSE(current_state.is_start_of_needle(previous_state));
 
   // CCP transitions to LOW - not start of needle (wrong transition)
   digitalWrite(PinsCorrespondance::CCP, LOW);
-  current_state = CarriageState();
+  current_state = CarriageState::read_from_pins();
   TEST_ASSERT_FALSE(current_state.is_start_of_needle(previous_state));
 }
 
 void test_is_carriage_moving() {
   // Set initial state: CCP LOW
   digitalWrite(PinsCorrespondance::CCP, LOW);
-  CarriageState previous_state = CarriageState();
+  CarriageState previous_state = CarriageState::read_from_pins();
 
   // CCP still LOW - not moving
   digitalWrite(PinsCorrespondance::CCP, LOW);
-  CarriageState current_state = CarriageState();
+  CarriageState current_state = CarriageState::read_from_pins();
   TEST_ASSERT_FALSE(current_state.is_carriage_moving(previous_state));
 
   // CCP changes to HIGH - carriage is moving
   digitalWrite(PinsCorrespondance::CCP, HIGH);
-  current_state = CarriageState();
+  current_state = CarriageState::read_from_pins();
   TEST_ASSERT_TRUE(current_state.is_carriage_moving(previous_state));
 
   // Update previous state
@@ -67,7 +69,7 @@ void test_is_carriage_moving() {
 
   // CCP changes back to LOW - carriage is moving
   digitalWrite(PinsCorrespondance::CCP, LOW);
-  current_state = CarriageState();
+  current_state = CarriageState::read_from_pins();
   TEST_ASSERT_TRUE(current_state.is_carriage_moving(previous_state));
 
   // Update previous state
@@ -75,23 +77,23 @@ void test_is_carriage_moving() {
 
   // CCP still LOW - not moving
   digitalWrite(PinsCorrespondance::CCP, LOW);
-  current_state = CarriageState();
+  current_state = CarriageState::read_from_pins();
   TEST_ASSERT_FALSE(current_state.is_carriage_moving(previous_state));
 }
 
 void test_is_start_out_of_pattern() {
   // Set initial state: KSL HIGH (in pattern)
   digitalWrite(PinsCorrespondance::KSL, HIGH);
-  CarriageState previous_state = CarriageState();
+  CarriageState previous_state = CarriageState::read_from_pins();
 
   // KSL still HIGH - not exiting pattern
   digitalWrite(PinsCorrespondance::KSL, HIGH);
-  CarriageState current_state = CarriageState();
+  CarriageState current_state = CarriageState::read_from_pins();
   TEST_ASSERT_FALSE(current_state.is_start_out_of_pattern(previous_state));
 
   // KSL transitions to LOW - exiting pattern
   digitalWrite(PinsCorrespondance::KSL, LOW);
-  current_state = CarriageState();
+  current_state = CarriageState::read_from_pins();
   TEST_ASSERT_TRUE(current_state.is_start_out_of_pattern(previous_state));
 
   // Update previous state
@@ -99,12 +101,12 @@ void test_is_start_out_of_pattern() {
 
   // KSL still LOW - not exiting pattern
   digitalWrite(PinsCorrespondance::KSL, LOW);
-  current_state = CarriageState();
+  current_state = CarriageState::read_from_pins();
   TEST_ASSERT_FALSE(current_state.is_start_out_of_pattern(previous_state));
 
   // KSL transitions to HIGH - entering pattern (not exiting)
   digitalWrite(PinsCorrespondance::KSL, HIGH);
-  current_state = CarriageState();
+  current_state = CarriageState::read_from_pins();
   TEST_ASSERT_FALSE(current_state.is_start_out_of_pattern(previous_state));
 }
 

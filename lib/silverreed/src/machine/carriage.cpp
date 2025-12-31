@@ -3,14 +3,38 @@
 #include "Arduino.h"
 #include "config.h"
 
-CarriageState::CarriageState() {
+CarriageState::CarriageState()
+    : CCP(false), KSL(false), DOB(false), HOK(false) {
   /*
-  Init the carriage state by reading the pins values
-  */
-  this->DOB = digitalRead(PinsCorrespondance::DOB);
-  this->CCP = digitalRead(PinsCorrespondance::CCP);
-  this->HOK = digitalRead(PinsCorrespondance::HOK);
-  this->KSL = digitalRead(PinsCorrespondance::KSL);
+   * Default constructor - initializes all pins to LOW/false.
+   * This is useful for testing and creating initial previous state snapshots
+   * without hardware access.
+   */
+}
+
+CarriageState::CarriageState(bool ccp, bool ksl, bool dob, bool hok)
+    : CCP(ccp), KSL(ksl), DOB(dob), HOK(hok) {
+  /*
+   * Explicit constructor with pin values.
+   * Use this when you have already read the pin values and want to
+   * construct a state object without re-reading from hardware.
+   */
+}
+
+CarriageState CarriageState::read_from_pins() {
+  /*
+   * Static factory method to read current state from hardware pins.
+   * This is the preferred method for production code as it clearly
+   * indicates that hardware I/O is occurring.
+   *
+   * @return CarriageState snapshot of current hardware pin states
+   */
+  bool ccp = digitalRead(PinsCorrespondance::CCP);
+  bool ksl = digitalRead(PinsCorrespondance::KSL);
+  bool dob = digitalRead(PinsCorrespondance::DOB);
+  bool hok = digitalRead(PinsCorrespondance::HOK);
+
+  return CarriageState(ccp, ksl, dob, hok);
 }
 
 CarriageDirection CarriageState::get_direction() {

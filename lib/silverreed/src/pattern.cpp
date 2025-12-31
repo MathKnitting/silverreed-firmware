@@ -1,18 +1,19 @@
 #include "pattern.h"
 
 #include "Arduino.h"
+#include "config.h"
 #include "debug.h"
 
 Pattern::Pattern() {
   /**
    * Init the pattern with default values.
-   * By default, the needle range is set to the full machine (0 to 200 needles).
-   * The buffer pointer is initialized to nullptr and must be set via
-   * set_buffer() before calling get_needle_state().
+   * By default, the needle range is set to the full machine (0 to
+   * DEFAULT_MAX_NEEDLES needles). The buffer pointer is initialized to nullptr
+   * and must be set via set_buffer() before calling get_needle_state().
    */
   this->buffer = nullptr;
   this->start_offset = 0;
-  this->end_offset = 200;
+  this->end_offset = DEFAULT_MAX_NEEDLES;
 }
 
 void Pattern::set_needle_range(uint8_t start_needle, uint8_t end_needle) {
@@ -79,8 +80,12 @@ bool Pattern::read_bit_little_endian(int offset) {
    *
    * @param offset The offset of the bit in the buffer.
    * @return The value of the bit.
+   *
+   * @warning This function does not validate that the buffer is set.
+   * The caller must ensure set_buffer() was called before using this function.
    */
-  uint8_t current_byte = offset >> 3;
-  bool pixelValue = bitRead(this->buffer[current_byte], offset & 0x07);
+  uint8_t current_byte = offset >> 3;  // Divide by BITS_PER_BYTE
+  bool pixelValue =
+      bitRead(this->buffer[current_byte], offset & BIT_INDEX_MASK);
   return pixelValue;
 }

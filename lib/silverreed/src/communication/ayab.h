@@ -16,6 +16,23 @@ constexpr uint32_t SERIAL_BAUDRATE = 115200U;
 constexpr uint8_t MAX_LINE_BUFFER_LEN = 25U;
 constexpr uint8_t MAX_MSG_BUFFER_LEN = 64U;
 
+// Protocol constants
+constexpr uint8_t CONTINUOUS_REPORTING_FLAG = 0x01;  // Bit 0 in flags byte
+constexpr uint8_t BEEPER_ENABLED_FLAG = 0x02;        // Bit 1 in flags byte
+constexpr uint8_t LAST_LINE_FLAG = 0x01;             // Bit 0 in flags byte
+constexpr uint8_t CRC8_POLYNOMIAL = 0x8C;  // CRC-8 polynomial for checksums
+constexpr unsigned long INIT_DELAY_MS =
+    500;  // Delay after initialization response
+
+// Error codes for AYAB protocol
+enum class ErrorCode : uint8_t {
+  SUCCESS = 0x00,
+  CHECKSUM_ERROR = 0x01,
+  EXPECTED_LONGER_MESSAGE = 0x02,
+  INVALID_STATE = 0x03,
+  INVALID_NEEDLE_RANGE = 0x04
+};
+
 enum class AYAB_API : unsigned char {
   reqStart = 0x01,
   cnfStart = 0xC1,
@@ -82,7 +99,7 @@ class Ayab_ : public Communicator {
   void testCmd(const uint8_t* buffer, size_t size);
   void quitCmd(const uint8_t* buffer, size_t size);
   void setCmd(const uint8_t* buffer, size_t size);
-  void send_cnfStart(bool error);
+  void send_cnfStart(ErrorCode error_code);
 };
 
 extern Ayab_& Ayab;

@@ -22,8 +22,7 @@ void KnittingProcess_::reset() {
   this->carriage = Carriage();
   this->pattern = Pattern();
 
-  this->current_needle_index =
-      -1;  // -1 means that the carriage is not on a needle of the pattern
+  this->current_needle_index = CARRIAGE_OFF_PATTERN;
   this->carriage.power_solenoid(LOW);
   DEBUG_WAIT_START();
 }
@@ -33,10 +32,15 @@ bool KnittingProcess_::init() {
    * Initialize the knitting process.
    * This function is called when Ayab sends a request to initialize the
    * knitting process (reqInit).
+   *
+   * @return true if initialization succeeded, false if already initialized
    */
   if (this->knitting_state != Idle) {
+    DEBUG_PRINTLN("Cannot init: not in Idle state");
     return false;
   }
+
+  DEBUG_PRINTLN("Initializing knitting process");
   this->knitting_state = WaitingStart;
 
   return true;
@@ -55,7 +59,25 @@ bool KnittingProcess_::start_knitting(uint8_t start_needle, uint8_t end_needle,
    * @param continuous_reporting_enabled If the continuous reporting is enabled.
    * TODO UNUSED
    * @param beeper_enabled If the beeper is enabled. TODO UNUSED
+   * @return true if knitting started successfully, false if invalid parameters
    */
+  // Validate needle range
+  if (end_needle < start_needle) {
+    DEBUG_PRINTLN("Invalid needle range: end < start");
+    return false;
+  }
+
+  if (end_needle >= DEFAULT_MAX_NEEDLES) {
+    DEBUG_PRINTLN("Invalid needle range: exceeds maximum");
+    return false;
+  }
+
+  // Only allow starting from WaitingStart state
+  if (this->knitting_state != WaitingStart) {
+    DEBUG_PRINTLN("Cannot start: not in WaitingStart state");
+    return false;
+  }
+
   this->start_needle = start_needle;
   this->end_needle = end_needle;
   this->knitting_state = Knitting;
@@ -95,7 +117,22 @@ void KnittingProcess_::set_next_line(uint8_t line_number, bool last_line_flag,
    * @param line_number The number of the line.
    * @param last_line_flag If the line is the last line of the pattern.
    * @param line The buffer of the line.
+   *
+   * @warning This function assumes the knitting process is in a valid state
+   * (WaitingStart or Knitting). It should only be called in response to
+   * reqLine requests.
    */
+  if (this->knitting_state != WaitingStart &&
+      this->knitting_state != Knitting) {
+    DEBUG_PRINTLN("set_next_line: invalid state");
+    return;
+  }
+
+  if (line == nullptr) {
+    DEBUG_PRINTLN("set_next_line: null buffer");
+    return;
+  }
+
   this->current_row = line_number + 1;
   this->pattern.set_buffer(line);
   this->is_last_line = last_line_flag;
@@ -111,9 +148,9 @@ void KnittingProcess_::knitting_loop() {
    */
 
   // To avoid any incoherence, we always get the current state of the carriage
-  // at the beginning of the loop this state will be used every time we need to
-  // read carriage state
-  CarriageState current_carriage_state = CarriageState();
+  // at the beginning of the loop. This state will be used every time we need to
+  // read carriage state during this iteration.
+  CarriageState current_carriage_state = CarriageState::read_from_pins();
 
   // Track carriage movement and manage solenoid power
   bool carriage_is_moving =
@@ -174,7 +211,7 @@ void KnittingProcess_::knitting_loop() {
 
       } else if (current_carriage_state.is_start_out_of_pattern(
                      this->previousCarriageState)) {
-        this->current_needle_index = -1;
+        this->current_needle_index = CARRIAGE_OFF_PATTERN;
         // out of pattern section (KSL HIGH), the DOB must be low to avoid
         // eating the solenoids.
         this->carriage.set_DOB_state(LOW);
