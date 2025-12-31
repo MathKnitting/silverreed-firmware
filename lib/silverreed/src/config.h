@@ -15,4 +15,8 @@ const int HOK = 6;             // Carriage direction (In)
 const int SOLENOID_POWER = 7;  // Pin used to power the solenoid
 }  // namespace PinsCorrespondance
 
+// Solenoid power management
+const unsigned long SOLENOID_INACTIVITY_TIMEOUT_MS =
+    2000;  // 2 seconds of inactivity before turning off solenoid
+
 #endif  // ARDUINO_CONFIG_H

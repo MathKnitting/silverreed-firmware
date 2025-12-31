@@ -25,6 +25,7 @@ class Carriage {
   int DOB_state = LOW;
   int power_solenoid_state = LOW;
   unsigned long solenoid_change_time;
+  unsigned long last_carriage_movement_time;
 
  public:
   Carriage();
@@ -34,6 +35,8 @@ class Carriage {
   bool is_solenoid_powered() const;
   bool is_end_of_pattern_section();
   void power_solenoid(int state);
+  void update_last_movement();
+  void check_and_shutoff_if_inactive();
 };
 
 #endif

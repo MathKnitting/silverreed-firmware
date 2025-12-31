@@ -115,6 +115,10 @@ void KnittingProcess_::knitting_loop() {
   // read carriage state
   CarriageState current_carriage_state = CarriageState();
 
+  // Track carriage movement and manage solenoid power
+  bool carriage_is_moving =
+      current_carriage_state.is_carriage_moving(this->previousCarriageState);
+
   switch (knitting_state) {
     case Idle:
       // nothing to do in this case
@@ -123,10 +127,25 @@ void KnittingProcess_::knitting_loop() {
     case WaitingStart: {
       // Waiting for the carriage to move to start the knitting process
       this->start_knitting_if_carriage_moves(current_carriage_state);
+      if (carriage_is_moving) {
+        this->carriage.update_last_movement();
+      }
       break;
     }
     case Knitting: {
       // Knitting mode
+
+      // Track movement and update timestamp
+      if (carriage_is_moving) {
+        this->carriage.update_last_movement();
+        // If solenoid was turned off due to inactivity, turn it back on
+        if (!this->carriage.is_solenoid_powered()) {
+          this->carriage.power_solenoid(HIGH);
+        }
+      }
+
+      // Check for inactivity timeout and turn off solenoid if necessary
+      this->carriage.check_and_shutoff_if_inactive();
 
       // Always request the first row when the knitting process starts
       if (this->current_row == 0) {

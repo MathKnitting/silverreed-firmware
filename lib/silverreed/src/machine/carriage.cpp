@@ -66,7 +66,10 @@ bool CarriageState::is_start_of_needle(CarriageState previous_state) {
   return this->CCP == HIGH && previous_state.CCP == LOW;
 }
 
-Carriage::Carriage() { this->power_solenoid(LOW); }
+Carriage::Carriage() {
+  this->power_solenoid(LOW);
+  this->last_carriage_movement_time = millis();
+}
 
 void Carriage::set_DOB_state(int state) {
   /*
@@ -90,4 +93,30 @@ void Carriage::power_solenoid(int state) {
   this->power_solenoid_state = state;
   digitalWrite(PinsCorrespondance::SOLENOID_POWER, state);
   this->solenoid_change_time = millis();
+}
+
+void Carriage::update_last_movement() {
+  /*
+   * Update the timestamp of the last carriage movement.
+   * This should be called whenever the carriage is detected to be moving.
+   */
+  this->last_carriage_movement_time = millis();
+}
+
+void Carriage::check_and_shutoff_if_inactive() {
+  /*
+   * Check if the carriage has been inactive for too long and turn off the
+   * solenoid if necessary. This prevents unnecessary power consumption and
+   * overheating when the carriage is not moving.
+   */
+  if (!this->is_solenoid_powered()) {
+    return;  // Already off, nothing to do
+  }
+
+  unsigned long current_time = millis();
+  unsigned long elapsed = current_time - this->last_carriage_movement_time;
+
+  if (elapsed >= SOLENOID_INACTIVITY_TIMEOUT_MS) {
+    this->power_solenoid(LOW);
+  }
 }

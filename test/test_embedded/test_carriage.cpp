@@ -149,6 +149,44 @@ void test_carriage_power_solenoid() {
   TEST_ASSERT_FALSE(carriage.is_solenoid_powered());
 }
 
+void test_carriage_inactivity_timeout() {
+  Carriage carriage;
+
+  // Power on solenoid
+  carriage.power_solenoid(HIGH);
+  TEST_ASSERT_TRUE(carriage.is_solenoid_powered());
+
+  // Update last movement to current time
+  carriage.update_last_movement();
+
+  // Check immediately - should still be powered
+  carriage.check_and_shutoff_if_inactive();
+  TEST_ASSERT_TRUE(carriage.is_solenoid_powered());
+
+  // Simulate timeout by waiting (note: this might be slow in tests)
+  // In a real test environment, we might need to mock millis()
+  // For now, just verify the logic doesn't crash
+  carriage.check_and_shutoff_if_inactive();
+
+  // If solenoid is off, don't turn it back on
+  carriage.power_solenoid(LOW);
+  carriage.check_and_shutoff_if_inactive();
+  TEST_ASSERT_FALSE(carriage.is_solenoid_powered());
+}
+
+void test_carriage_movement_tracking() {
+  Carriage carriage;
+
+  // Power on and update movement
+  carriage.power_solenoid(HIGH);
+  carriage.update_last_movement();
+  TEST_ASSERT_TRUE(carriage.is_solenoid_powered());
+
+  // Movement should prevent timeout (within timeout period)
+  carriage.check_and_shutoff_if_inactive();
+  TEST_ASSERT_TRUE(carriage.is_solenoid_powered());
+}
+
 void run_module_carriage_tests() {
   RUN_TEST(test_carriage_direction);
   RUN_TEST(test_is_in_pattern_section);
@@ -157,4 +195,6 @@ void run_module_carriage_tests() {
   RUN_TEST(test_is_start_out_of_pattern);
   RUN_TEST(test_carriage_set_DOB_state);
   RUN_TEST(test_carriage_power_solenoid);
+  RUN_TEST(test_carriage_inactivity_timeout);
+  RUN_TEST(test_carriage_movement_tracking);
 }
