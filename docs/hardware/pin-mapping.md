@@ -36,6 +36,3 @@ All pin configuration is centralized in [lib/silverreed/src/config.h](../../lib/
 ## Board Compatibility
 
 ### Arduino UNO
-
-
-

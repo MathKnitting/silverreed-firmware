@@ -19,4 +19,3 @@ The AYAB protocol is implemented in the communication layer:
 
 - **[ayab.h](../../lib/silverreed/src/communication/ayab.h)** / **[ayab.cpp](../../lib/silverreed/src/communication/ayab.cpp)** - Protocol implementation
 - Uses [PacketSerial](https://github.com/bakercp/PacketSerial) library for SLIP encoding
-
