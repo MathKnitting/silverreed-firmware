@@ -131,13 +131,13 @@ Tests are organized by platform:
   - [test_integration.cpp](test/test_embedded/test_integration.cpp) - Full knitting process integration tests
   - [test_carriage.cpp](test/test_embedded/test_carriage.cpp) - Carriage state detection tests
   - [test_knitting.cpp](test/test_embedded/test_knitting.cpp) - Knitting state machine tests
+  - [test_ayab.cpp](test/test_embedded/test_ayab.cpp) - AYAB protocol and communication tests
+  - [test_version.cpp](test/test_embedded/test_version.cpp) - Firmware version parsing tests
 
 - **[test/test_desktop/](test/test_desktop/)** - Tests that run on native platform (ignored by embedded builds)
   - Platform-agnostic logic tests
 
 - **[test/test_common/](test/test_common/)** - Shared test utilities and pattern tests (ignored by simavr due to timing issues)
-
-- **[test/test_serial.py](test/test_serial.py)** - Python pytest script for serial communication testing with real hardware
 
 ## Code Style
 
@@ -150,6 +150,35 @@ The project enforces Google C++ style via:
   - `m_` prefix for private members
 
 Pre-commit hooks run automatically on commit. Run manually with `uv run task lint`.
+
+## Firmware Versioning
+
+The firmware version is automatically managed through git tags and injected at build time:
+
+### How It Works
+1. **Git tags** define the version (e.g., `v1.3.2`)
+2. **[scripts/get_version.py](scripts/get_version.py)** extracts the version using `git describe --tags`
+3. **PlatformIO** injects it as a `FIRMWARE_VERSION` macro during compilation
+4. **[lib/silverreed/src/version.h](lib/silverreed/src/version.h)** provides:
+   - The `FIRMWARE_VERSION` macro (string format)
+   - Parsing functions to extract major, minor, and patch numbers
+5. **AYAB protocol** uses this version in the `cnfInfo` response:
+   - Bytes 2-4: Parsed version numbers (major, minor, patch)
+   - Bytes 5-21: Full version string including suffixes like "-dirty"
+
+### Version Format
+- **Released builds**: `1.3.2` (from git tag `v1.3.2`)
+- **Development builds**: `1.3.2-dirty` (uncommitted changes) or `1.3.2-1-g<hash>` (commits after tag)
+- **Fallback**: `indev` (if git is unavailable)
+
+### Creating a New Release
+To release a new version:
+```shell
+git tag v1.4.0
+git push origin v1.4.0
+```
+
+The version will be automatically extracted and embedded in all subsequent builds.
 
 ## Debugging
 
