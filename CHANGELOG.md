@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/MathKnitting/silverreed-firmware/compare/v1.2.2...v1.2.3) (2026-01-01)
+
+
+### Bug Fixes
+
+* semantic release ([6e4f430](https://github.com/MathKnitting/silverreed-firmware/commit/6e4f430dffe6e37d0e6e399d1a9fcd2ed4efa776))
+
 ## [1.2.2](https://github.com/MathKnitting/silverreed-firmware/compare/v1.2.1...v1.2.2) (2026-01-01)
 
 
