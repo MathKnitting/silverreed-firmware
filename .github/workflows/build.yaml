@@ -40,8 +40,25 @@ jobs:
       - name: Run tests (simavr)
         run: uv run platformio test -e simavr --without-uploading
 
-      - name: Build PlatformIO
-        run: uv run task build
+      - name: Build firmware for UNO
+        run: uv run task build -e uno
+
+      - name: Build firmware for UNO R4 WiFi
+        run: uv run task build -e uno_r4_wifi
+
+      - name: Rename firmware files
+        run: |
+          cp .pio/build/uno/firmware.hex firmware-uno.hex
+          cp .pio/build/uno_r4_wifi/firmware.hex firmware-uno-r4-wifi.hex
+
+      - name: Upload firmware to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            firmware-uno.hex
+            firmware-uno-r4-wifi.hex
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy-docs:
     name: Build & Deploy Documentation
