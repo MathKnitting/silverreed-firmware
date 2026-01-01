@@ -32,10 +32,13 @@ jobs:
 
       # Install pre-commit linting dependencies.
       - name: Install clang
-        run: sudo apt-get install clang clang-format clang-tidy
+        run: sudo apt-get install clang clang-format clang-tidy simavr
 
       - name: Run pre-commit hooks
         run: uv run task lint
+
+      - name: Run tests (simavr)
+        run: uv run platformio test -e simavr --without-uploading
 
       - name: Build PlatformIO
         run: uv run task build
