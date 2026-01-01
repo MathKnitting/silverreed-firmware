@@ -15,6 +15,7 @@
 #include "test_integration.h"
 #include "test_knitting.h"
 #include "test_pattern.h"
+#include "test_version.h"
 
 void setup() {
   // NOTE!!! Wait for >2 secs
@@ -29,12 +30,21 @@ void setup() {
   pinMode(PinsCorrespondance::HOK, OUTPUT);
   pinMode(PinsCorrespondance::KSL, OUTPUT);
   pinMode(PinsCorrespondance::SOLENOID_POWER, OUTPUT);
+
+  // Initialize all output pins to LOW to ensure clean test state
+  digitalWrite(PinsCorrespondance::ND1, LOW);
+  digitalWrite(PinsCorrespondance::DOB, LOW);
+  digitalWrite(PinsCorrespondance::CCP, LOW);
+  digitalWrite(PinsCorrespondance::HOK, LOW);
+  digitalWrite(PinsCorrespondance::KSL, LOW);
+  digitalWrite(PinsCorrespondance::SOLENOID_POWER, LOW);
 }
 
 void loop() {
   RUN_MODULE(run_module_carriage_tests);
   RUN_MODULE(run_module_pattern_tests);
   RUN_MODULE(run_module_knitting_tests);
+  RUN_MODULE(run_module_version_tests);
   RUN_MODULE(run_module_ayab_tests);
   RUN_MODULE(run_module_integration_tests);
 

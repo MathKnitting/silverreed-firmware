@@ -12,6 +12,7 @@
 
 #include "config.h"
 #include "debug.h"
+#include "version.h"
 
 Ayab_& Ayab = Ayab.getInstance();
 
@@ -128,10 +129,17 @@ void Ayab_::reqInfo(const uint8_t* buffer, size_t size) {
   uint8_t payload[22];
   payload[0] = static_cast<uint8_t>(AYAB_API::cnfInfo);
   payload[1] = API_VERSION;
-  payload[2] = 0;
-  payload[3] = 0;
-  payload[4] = 0;
-  strncpy((char*)payload + 5, "indev", 16);
+  // Parse semantic version numbers from FIRMWARE_VERSION string
+  payload[2] = parse_version_major(FIRMWARE_VERSION);
+  payload[3] = parse_version_minor(FIRMWARE_VERSION);
+  payload[4] = parse_version_patch(FIRMWARE_VERSION);
+  // Copy only the suffix (metadata WITHOUT separator) to suffix field (bytes
+  // 5-21) For "1.3.2-dirty", get_version_suffix returns "dirty" (not "-dirty")
+  // For "1.3.2", get_version_suffix returns ""
+  // For "indev", get_version_suffix returns "indev"
+  // AYAB client will reconstruct as: major.minor.patch + suffix
+  const char* suffix = get_version_suffix(FIRMWARE_VERSION);
+  strncpy((char*)payload + 5, suffix, 16);
   send(payload, 22);
 };
 

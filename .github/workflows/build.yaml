@@ -40,7 +40,7 @@ jobs:
         run: uv run task lint
 
       - name: Run tests (simavr)
-        run: uv run platformio test -e simavr --without-uploading
+        run: uv run platformio test -e simavr --without-uploading -vv
 
       - name: Build firmware for UNO
         run: uv run task build -e uno

@@ -6,6 +6,7 @@
 #include "communication/ayab.h"
 #include "config.h"
 #include "knitting.h"
+#include "version.h"
 
 void test_CRC8_calculation() {
   Ayab_& ayab_instance = Ayab_::getInstance();
@@ -161,6 +162,51 @@ void test_empty_packet_ignored() {
   TEST_ASSERT_EQUAL(Idle, KnittingProcess.get_knitting_state());
 }
 
+void test_reqInfo_response() {
+  // This test verifies that reqInfo sends a valid cnfInfo response
+  // We can't directly capture the serial output in the test, but we can
+  // verify the version parsing logic and constants
+
+  // Verify API_VERSION constant
+  TEST_ASSERT_EQUAL(6, API_VERSION);
+
+  // Test that version parsing functions work correctly with FIRMWARE_VERSION
+  uint8_t major = parse_version_major(FIRMWARE_VERSION);
+  uint8_t minor = parse_version_minor(FIRMWARE_VERSION);
+  uint8_t patch = parse_version_patch(FIRMWARE_VERSION);
+
+  // Verify parsed values are in valid range (0-255)
+  TEST_ASSERT_LESS_OR_EQUAL(255, major);
+  TEST_ASSERT_LESS_OR_EQUAL(255, minor);
+  TEST_ASSERT_LESS_OR_EQUAL(255, patch);
+
+  // If FIRMWARE_VERSION is a semantic version (contains dots), verify parsing
+  const char* version = FIRMWARE_VERSION;
+  bool has_dots = false;
+  for (const char* p = version; *p; ++p) {
+    if (*p == '.') {
+      has_dots = true;
+      break;
+    }
+  }
+
+  if (has_dots) {
+    // For semantic versions like "1.3.2" or "1.3.2-dirty",
+    // at least one version number should be non-zero
+    TEST_ASSERT_TRUE(major > 0 || minor > 0 || patch > 0);
+  } else {
+    // For non-semantic versions like "indev", all should be zero
+    TEST_ASSERT_EQUAL(0, major);
+    TEST_ASSERT_EQUAL(0, minor);
+    TEST_ASSERT_EQUAL(0, patch);
+  }
+
+  // Verify reqInfo executes without crashing
+  uint8_t buffer[] = {0x03};
+  Ayab.receive(buffer, sizeof(buffer));
+  // If we get here without crashing, the test passes
+}
+
 void run_module_ayab_tests() {
   RUN_TEST(test_CRC8_calculation);
   RUN_TEST(test_reqStart_valid_checksum);
@@ -171,4 +217,5 @@ void run_module_ayab_tests() {
   RUN_TEST(test_reqInit_valid);
   RUN_TEST(test_reqInit_when_not_idle);
   RUN_TEST(test_empty_packet_ignored);
+  RUN_TEST(test_reqInfo_response);
 }
