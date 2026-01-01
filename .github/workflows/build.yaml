@@ -49,14 +49,14 @@ jobs:
       - name: Rename firmware files
         run: |
           cp .pio/build/uno/firmware.hex firmware-uno.hex
-          cp .pio/build/uno_r4_wifi/firmware.hex firmware-uno-r4-wifi.hex
+          cp .pio/build/uno_r4_wifi/firmware.bin firmware-uno-r4-wifi.bin
 
       - name: Upload firmware to release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             firmware-uno.hex
-            firmware-uno-r4-wifi.hex
+            firmware-uno-r4-wifi.bin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
