@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/MathKnitting/silverreed-firmware/compare/v1.2.3...v1.3.0) (2026-01-01)
+
+
+### Features
+
+* add firmware to release ([3ee5d16](https://github.com/MathKnitting/silverreed-firmware/commit/3ee5d160f9d32b507204dd8bb7ec945fce3f510a))
+
 ## [1.2.3](https://github.com/MathKnitting/silverreed-firmware/compare/v1.2.2...v1.2.3) (2026-01-01)
 
 
