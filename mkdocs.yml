@@ -17,7 +17,6 @@ nav:
     - Project Purpose: concepts/purpose.md
     - How Knitting Machines Work: concepts/knitting-machines.md
     - AYAB Protocol: concepts/ayab-protocol.md
-    - Knitting Process: concepts/knitting-process.md
   - Hardware:
     - Shield Design: hardware/shield.md
     - Pin Mapping: hardware/pin-mapping.md
@@ -26,36 +25,31 @@ nav:
     - Troubleshooting Hardware: hardware/troubleshooting.md
   - Firmware:
     - Architecture Overview: firmware/architecture.md
-    - Core Components: firmware/components.md
-    - Communication Layer: firmware/communication.md
-    - State Machine: firmware/state-machine.md
-    - Pattern Management: firmware/pattern.md
-  - Examples:
-    - Basic Knitting: examples/basic-knitting.md
-    - Pattern Loading: examples/pattern-loading.md
-    - Serial Communication: examples/serial-communication.md
-  - API Reference:
-    - Main API: api/main.md
-    - Pattern System: api/pattern.md
-    - Knitting Engine: api/knitting.md
-    - Machine Control: api/machine.md
-  - Development:
-    - Development Setup: development/setup.md
-    - Testing: development/testing.md
-    - Debugging: development/debugging.md
-    - Code Style: development/code-style.md
-    - Contributing: development/contributing.md
-  - Troubleshooting:
-    - Common Issues: troubleshooting/common-issues.md
-    - Serial Communication: troubleshooting/serial.md
-    - Hardware Problems: troubleshooting/hardware.md
-  - Reference:
-    - Changelog: reference/changelog.md
-    - License: reference/license.md
-    - Glossary: reference/glossary.md
+  - Reference: reference/references.md
 
 theme:
-  name: gitbook
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 
 markdown_extensions:
   - admonition
