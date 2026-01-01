@@ -42,7 +42,7 @@ jobs:
             @semantic-release/exec@5
             @semantic-release/git@9
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
 
       - name: Do something when a new release published
         if: steps.semantic.outputs.new_release_published == 'true'
