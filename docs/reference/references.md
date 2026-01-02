@@ -17,4 +17,7 @@ The AYAB project provides open-source solutions for computerized knitting machin
 Official Silver Reed machine manuals and technical documentation:
 
 - **[EC1 Manual](https://mkmanuals.com/downloadable/download/sample/sample_id/1751/)** - Silver Reed EC1 electronic controller documentation
+- **[PE1 Manual](https://mkmanuals.com/downloadable/download/sample/sample_id/464/)** - - Silver Reed PE1 design controller
+- **[SK840 Manual](https://mkmanuals.com/silver-reed-sk-840-knitting-machine-instruction-manual.html)** - Silver Reed SK840 knitting machine documentation
 - **[SK580 Manual](https://mkmanuals.com/downloadable/download/sample/sample_id/1479/)** - Silver Reed SK580 knitting machine documentation
+
