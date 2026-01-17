@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an Arduino firmware project for controlling Silver Reed knitting machines. It implements the AYAB (All Yarns Are Beautiful) protocol for automated pattern knitting. The firmware runs on Arduino boards (UNO, UNO R4 WiFi) and uses serial communication with SLIP encoding to control knitting machine solenoids based on pattern data.
+This is an Arduino firmware project for controlling Silver Reed knitting machines. It implements the AYAB (All Yarns Are Beautiful) protocol for automated pattern knitting. The firmware runs on multiple platforms including Arduino boards (UNO, UNO R4 WiFi) and ESP32 boards (ESP32 DevKit), and uses serial communication with SLIP encoding to control knitting machine solenoids based on pattern data.
 
 ## Build System & Commands
 
@@ -31,6 +31,7 @@ uv run task build
 uv run task build -e uno
 uv run task build -e unodebug      # UNO with debug flags
 uv run task build -e uno_r4_wifi   # Arduino UNO R4 WiFi
+uv run task build -e esp32dev      # ESP32 DevKit
 
 # Upload to microcontroller
 uv run task upload
@@ -38,8 +39,12 @@ uv run task upload -e uno
 
 # Run tests
 uv run task test
-uv run task test -e simavr         # Hardware simulation tests
+uv run task test -e simavr         # AVR/Arduino hardware simulation tests
+uv run task test -e esp32qemu      # ESP32 QEMU simulation tests
 uv run task test -e native         # Desktop/native tests
+
+# Install QEMU for ESP32 testing (one-time setup)
+uv run task install-qemu
 
 # Lint code (runs pre-commit hooks)
 uv run task lint
@@ -66,7 +71,9 @@ uv run task --list
 - `uno` - Arduino UNO (default)
 - `unodebug` - Arduino UNO with DEBUG flag enabled
 - `uno_r4_wifi` - Arduino UNO R4 WiFi
-- `simavr` - AVR simulator for testing
+- `esp32dev` - ESP32 DevKit (generic ESP32, also compatible with ESP32-S2)
+- `simavr` - AVR simulator for testing (Arduino/AVR only)
+- `esp32qemu` - ESP32 QEMU simulator for testing (requires QEMU installation)
 - `native` - Native platform for desktop tests
 
 ### Direct PlatformIO Commands
@@ -111,14 +118,21 @@ The firmware is organized into three main layers:
    - Stores and manages knitting pattern data
    - Line-based pattern data structure (up to MAX_LINE_BUFFER_LEN = 25 bytes per line)
 
-### Pin Configuration ([lib/silverreed/src/config.h](lib/silverreed/src/config.h))
-Hardware pins are defined in `PinsCorrespondance` namespace:
-- ND1 (pin 2): Pattern position
-- KSL (pin 3): Point CAM detection
-- DOB (pin 4): Data Out Buffer (output to solenoids)
-- CCP (pin 5): Carriage Clock Pulse
-- HOK (pin 6): Carriage direction
-- SOLENOID_POWER (pin 7): Powers the solenoid array
+### Pin Configuration
+
+Hardware pins are defined in `PinsCorrespondance` namespace in platform-specific files. The appropriate configuration is automatically included based on the build target.
+
+**Configuration Files:**
+- [lib/silverreed/src/config.h](lib/silverreed/src/config.h) - Main configuration file that includes the platform-specific config
+- [lib/silverreed/src/config_arduino.h](lib/silverreed/src/config_arduino.h) - Arduino (AVR/Renesas) pin configuration
+- [lib/silverreed/src/config_esp32.h](lib/silverreed/src/config_esp32.h) - ESP32 pin configuration
+
+**Arduino (AVR/Renesas)** pins:
+- ND1 (pin 2), KSL (pin 3), DOB (pin 4), CCP (pin 5), HOK (pin 6), SOLENOID_POWER (pin 7)
+
+**ESP32** pins:
+- ND1 (GPIO 21), KSL (GPIO 22), DOB (GPIO 23), CCP (GPIO 18), HOK (GPIO 5), SOLENOID_POWER (GPIO 17)
+- These pins avoid strapping pins, flash pins, and other problematic GPIOs for good compatibility with ESP32 variants
 
 ### Singleton Pattern
 Both `Ayab` and `KnittingProcess` use the singleton pattern with `getInstance()`. They are accessed via extern references in their respective headers.
@@ -127,7 +141,7 @@ Both `Ayab` and `KnittingProcess` use the singleton pattern with `getInstance()`
 
 Tests are organized by platform:
 
-- **[test/test_embedded/](test/test_embedded/)** - Tests that run on Arduino hardware or simavr simulator
+- **[test/test_embedded/](test/test_embedded/)** - Tests that run on Arduino hardware or simulators (simavr/esp32qemu)
   - [test_integration.cpp](test/test_embedded/test_integration.cpp) - Full knitting process integration tests
   - [test_carriage.cpp](test/test_embedded/test_carriage.cpp) - Carriage state detection tests
   - [test_knitting.cpp](test/test_embedded/test_knitting.cpp) - Knitting state machine tests
@@ -138,6 +152,31 @@ Tests are organized by platform:
   - Platform-agnostic logic tests
 
 - **[test/test_common/](test/test_common/)** - Shared test utilities and pattern tests (ignored by simavr due to timing issues)
+
+### QEMU ESP32 Testing
+
+The project supports ESP32 testing via QEMU emulation:
+
+1. **Installation** (one-time setup):
+   ```shell
+   uv run task install-qemu
+   ```
+   This downloads and compiles Espressif's QEMU fork with ESP32 support to `~/.platformio/qemu-esp32/`.
+
+2. **Running tests**:
+   ```shell
+   uv run task test-esp32-qemu
+   # Or directly with PlatformIO
+   uv run platformio test -e esp32qemu
+   ```
+
+3. **How it works**:
+   - Builds firmware for ESP32 target
+   - Creates a flash image combining bootloader, partition table, and application binary
+   - Launches QEMU with the flash image
+   - Tests run in the emulated environment with 30s timeout
+
+**Note**: QEMU ESP32 emulation has limitations compared to real hardware. Some peripherals may not be fully emulated.
 
 ## Code Style
 
