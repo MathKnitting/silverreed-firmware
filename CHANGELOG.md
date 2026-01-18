@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/MathKnitting/silverreed-firmware/compare/v1.4.2...v1.4.3) (2026-01-18)
+
+
+### Bug Fixes
+
+* stop knitting directly when a last line received [#39](https://github.com/MathKnitting/silverreed-firmware/issues/39) ([59af7b9](https://github.com/MathKnitting/silverreed-firmware/commit/59af7b9cda010efe61ca2cae2034d1e22eae07c5))
+
 ## [1.4.2](https://github.com/MathKnitting/silverreed-firmware/compare/v1.4.1...v1.4.2) (2026-01-18)
 
 
