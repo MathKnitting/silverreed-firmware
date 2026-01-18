@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/MathKnitting/silverreed-firmware/compare/v1.4.0...v1.4.1) (2026-01-18)
+
+
+### Bug Fixes
+
+* needle start of needle synchronization with start and end of pattern [#34](https://github.com/MathKnitting/silverreed-firmware/issues/34) ([7ec3f5b](https://github.com/MathKnitting/silverreed-firmware/commit/7ec3f5b15e712a7cbbf70bbc2a0bb7a0c274d024))
+
 # [1.4.0](https://github.com/MathKnitting/silverreed-firmware/compare/v1.3.2...v1.4.0) (2026-01-01)
 
 
