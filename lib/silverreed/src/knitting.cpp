@@ -24,6 +24,7 @@ void KnittingProcess_::reset() {
 
   this->current_needle_index = CARRIAGE_OFF_PATTERN;
   this->carriage.power_solenoid(LOW);
+  this->is_start_out_of_pattern = false;
   DEBUG_WAIT_START();
 }
 
@@ -199,6 +200,11 @@ void KnittingProcess_::knitting_loop() {
           this->previousCarriageState);  // check if the carriage is at the
                                          // start of the needle, always done
                                          // to refresh the previous state
+      if (current_carriage_state.is_start_out_of_pattern(
+              this->previousCarriageState)) {
+        this->is_start_out_of_pattern = true;
+      }
+
       // pattern
       if (current_carriage_state.is_in_pattern_section() && start_of_needle) {
         // DOB state must change only when the carriage is at the start of the
@@ -209,8 +215,11 @@ void KnittingProcess_::knitting_loop() {
             this->current_needle_index, current_carriage_state.get_direction());
         this->carriage.set_DOB_state(needle_state);
 
-      } else if (current_carriage_state.is_start_out_of_pattern(
-                     this->previousCarriageState)) {
+      } else if (this->is_start_out_of_pattern && start_of_needle) {
+        // carriage just moved out of pattern section
+        // WARNING: the carriage really finished to knit the pattern only when
+        // it is at the start of the needle after the KSL went from HIGH TO LOW
+        this->is_start_out_of_pattern = false;
         this->current_needle_index = CARRIAGE_OFF_PATTERN;
         // out of pattern section (KSL HIGH), the DOB must be low to avoid
         // eating the solenoids.

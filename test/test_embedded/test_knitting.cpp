@@ -72,8 +72,12 @@ void test_knitting_needle_index_tracking() {
 
   TEST_ASSERT_EQUAL(1, KnittingProcess.get_current_needle_index());
 
+  digitalWrite(PinsCorrespondance::CCP, LOW);
+  KnittingProcess.knitting_loop();
+
   // Exit pattern section - should reset to -1
   digitalWrite(PinsCorrespondance::KSL, LOW);
+  digitalWrite(PinsCorrespondance::CCP, HIGH);
   KnittingProcess.knitting_loop();
 
   TEST_ASSERT_EQUAL(-1, KnittingProcess.get_current_needle_index());

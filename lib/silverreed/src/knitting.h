@@ -19,6 +19,7 @@ class KnittingProcess_ {
   uint8_t start_needle;
   uint8_t end_needle;
   bool is_last_line;
+  bool is_start_out_of_pattern;
 
   void start_knitting_if_carriage_moves(CarriageState carriage_state);
 
