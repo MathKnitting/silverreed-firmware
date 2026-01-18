@@ -91,7 +91,8 @@ bool CarriageState::is_start_of_needle(CarriageState previous_state) {
 }
 
 Carriage::Carriage() {
-  this->power_solenoid(LOW);
+  // Force initial solenoid state to LOW for safety
+  digitalWrite(PinsCorrespondance::SOLENOID_POWER, LOW);
   this->last_carriage_movement_time = millis();
 }
 
