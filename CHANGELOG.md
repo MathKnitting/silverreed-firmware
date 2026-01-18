@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/MathKnitting/silverreed-firmware/compare/v1.4.1...v1.4.2) (2026-01-18)
+
+
+### Bug Fixes
+
+* force solenoid poweroff when resetting carriage [#36](https://github.com/MathKnitting/silverreed-firmware/issues/36) ([2e69b9e](https://github.com/MathKnitting/silverreed-firmware/commit/2e69b9ed055ac9ccd355309443ea6bf3aa854f81))
+
 ## [1.4.1](https://github.com/MathKnitting/silverreed-firmware/compare/v1.4.0...v1.4.1) (2026-01-18)
 
 
