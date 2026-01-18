@@ -129,6 +129,13 @@ void KnittingProcess_::set_next_line(uint8_t line_number, bool last_line_flag,
     return;
   }
 
+  if (last_line_flag) {
+    // Ayab sends one row in advance for brother knitting (preparation row)
+    // So when we get the last_line_flag, it means the knitting is already
+    // finished
+    this->reset();
+  }
+
   if (line == nullptr) {
     DEBUG_PRINTLN("set_next_line: null buffer");
     return;
@@ -137,7 +144,6 @@ void KnittingProcess_::set_next_line(uint8_t line_number, bool last_line_flag,
   this->current_row = line_number + 1;
   this->pattern.set_buffer(line);
   this->is_last_line = last_line_flag;
-
   return;
 }
 
@@ -224,12 +230,7 @@ void KnittingProcess_::knitting_loop() {
         // out of pattern section (KSL HIGH), the DOB must be low to avoid
         // eating the solenoids.
         this->carriage.set_DOB_state(LOW);
-        if (!this->is_last_line) {
-          Ayab.sendReqLine(this->current_row);
-        } else {
-          // reset the knitting process if the last row was done
-          this->reset();
-        }
+        Ayab.sendReqLine(this->current_row);
       }
     }
     default:
