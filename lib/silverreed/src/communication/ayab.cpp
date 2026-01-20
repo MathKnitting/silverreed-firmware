@@ -231,6 +231,7 @@ void Ayab_::reqTest(const uint8_t* buffer, size_t size) {
 void Ayab_::reqInit(const uint8_t* buffer, size_t size) {
   uint8_t payload[2];
   payload[0] = static_cast<uint8_t>(AYAB_API::cnfInit);
+
   if (KnittingProcess.init()) {
     payload[1] = 0;
   } else {

@@ -17,9 +17,10 @@ void test_knitting_state_transitions() {
   TEST_ASSERT_TRUE(init_result);
   TEST_ASSERT_EQUAL(WaitingStart, KnittingProcess.get_knitting_state());
 
-  // Calling init again should fail
+  // Calling init again should reset the knitting process
   init_result = KnittingProcess.init();
-  TEST_ASSERT_FALSE(init_result);
+  TEST_ASSERT_TRUE(init_result);
+  TEST_ASSERT_EQUAL(WaitingStart, KnittingProcess.get_knitting_state());
 
   // Start knitting should transition to Knitting state
   bool start_result = KnittingProcess.start_knitting(50, 100, false, false);

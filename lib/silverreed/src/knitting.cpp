@@ -34,11 +34,12 @@ bool KnittingProcess_::init() {
    * This function is called when Ayab sends a request to initialize the
    * knitting process (reqInit).
    *
-   * @return true if initialization succeeded, false if already initialized
+   * @return true if initialization succeeded
    */
+  // If not in Idle state, reset the knitting process first
   if (this->knitting_state != Idle) {
-    DEBUG_PRINTLN("Cannot init: not in Idle state");
-    return false;
+    DEBUG_PRINTLN("reqInit received while not Idle, resetting process");
+    KnittingProcess.reset();
   }
 
   DEBUG_PRINTLN("Initializing knitting process");
