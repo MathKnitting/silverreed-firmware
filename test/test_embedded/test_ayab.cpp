@@ -143,12 +143,45 @@ void test_reqInit_when_not_idle() {
   // Already in WaitingStart state
   TEST_ASSERT_EQUAL(WaitingStart, KnittingProcess.get_knitting_state());
 
-  // Try to init again
+  // Send reqInit again - should auto-reset and re-initialize
   uint8_t buffer[] = {0x05, 0x01, 0xa1};
   Ayab.receive(buffer, sizeof(buffer));
 
-  // Should remain in WaitingStart (init fails when not Idle)
+  // Should successfully reset and transition to WaitingStart again
   TEST_ASSERT_EQUAL(WaitingStart, KnittingProcess.get_knitting_state());
+}
+
+void test_reqInit_during_active_knitting() {
+  // Simulate user canceling AYAB during active knitting and restarting
+  KnittingProcess.reset();
+  KnittingProcess.init();
+
+  // Start knitting
+  uint8_t start_buffer[] = {0x01, 0x54, 0x74, 0x02, 0x5b};
+  Ayab.receive(start_buffer, sizeof(start_buffer));
+  TEST_ASSERT_EQUAL(Knitting, KnittingProcess.get_knitting_state());
+
+  // Send a line to ensure we're fully in knitting mode
+  uint8_t confline_buffer[] = {0x42, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                               0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xe0,
+                               0xc7, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                               0x00, 0x00, 0x00, 0x00, 0x00, 0x71};
+  Ayab.receive(confline_buffer, sizeof(confline_buffer));
+
+  // Verify we're actively knitting
+  TEST_ASSERT_EQUAL(Knitting, KnittingProcess.get_knitting_state());
+
+  // User closes AYAB (connection drops) and restarts it
+  // AYAB sends reqInit when restarted
+  uint8_t init_buffer[] = {0x05, 0x01, 0xa1};
+  Ayab.receive(init_buffer, sizeof(init_buffer));
+
+  // Should auto-reset from Knitting state and successfully initialize
+  TEST_ASSERT_EQUAL(WaitingStart, KnittingProcess.get_knitting_state());
+
+  // Verify needle range was also reset
+  TEST_ASSERT_EQUAL(0, KnittingProcess.get_start_needle());
+  TEST_ASSERT_EQUAL(0, KnittingProcess.get_end_needle());
 }
 
 void test_empty_packet_ignored() {
@@ -216,6 +249,7 @@ void run_module_ayab_tests() {
   RUN_TEST(test_cnfLine_invalid_checksum);
   RUN_TEST(test_reqInit_valid);
   RUN_TEST(test_reqInit_when_not_idle);
+  RUN_TEST(test_reqInit_during_active_knitting);
   RUN_TEST(test_empty_packet_ignored);
   RUN_TEST(test_reqInfo_response);
 }
