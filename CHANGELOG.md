@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/MathKnitting/silverreed-firmware/compare/v1.4.3...v1.4.4) (2026-01-22)
+
+
+### Bug Fixes
+
+* allow knitting cancelation and restarting ([76f59c8](https://github.com/MathKnitting/silverreed-firmware/commit/76f59c88c4ef6be6d3191830d4723e3587a9d7f1))
+
 ## [1.4.3](https://github.com/MathKnitting/silverreed-firmware/compare/v1.4.2...v1.4.3) (2026-01-18)
 
 
