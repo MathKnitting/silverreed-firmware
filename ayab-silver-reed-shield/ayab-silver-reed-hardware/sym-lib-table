@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "ESP32")(type "KiCad")(uri "${KIPRJMOD}/ESP32_S3_MINI_1_N8/ESP32-S3-MINI-1-N8.kicad_sym")(options "")(descr ""))
+)
