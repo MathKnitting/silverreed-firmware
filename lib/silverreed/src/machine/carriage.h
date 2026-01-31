@@ -48,6 +48,9 @@ class Carriage {
   void power_solenoid(int state);
   void update_last_movement();
   void check_and_shutoff_if_inactive();
+
+  // Static method to initialize carriage hardware pins and set safe state
+  static void secure_carriage();
 };
 
 #endif
