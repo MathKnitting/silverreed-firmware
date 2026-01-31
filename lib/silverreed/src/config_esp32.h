@@ -18,83 +18,49 @@
 
 namespace PinsCorrespondance {
 
-#if defined(CONFIG_IDF_TARGET_ESP32S3)
 // ESP32-S3 specific pin configuration
 /**
  * ND1 (Needle Detection 1) - Pattern position sensor
  * GPIO1 - Safe I/O pin on ESP32-S3
  */
-const int ND1 = 1;
+const int ND1 = 16;
 
 /**
  * KSL (Knitting Section Limit) - Point CAM detection
  * GPIO2 - Safe I/O pin on ESP32-S3 (not a strapping pin on S3)
  */
-const int KSL = 2;
+const int KSL = 17;
 
 /**
  * DOB (Data Out Buffer) - Solenoid control output
  * GPIO4 - Safe output pin on ESP32-S3
  */
-const int DOB = 4;
+const int DOB = 18;
 
 /**
  * CCP (Carriage Clock Pulse) - Needle transition detector
  * GPIO5 - Safe I/O pin on ESP32-S3
  */
-const int CCP = 5;
+const int CCP = 19;
 
 /**
  * HOK (Horizontal OK / Direction) - Carriage direction indicator
  * GPIO6 - Safe I/O pin on ESP32-S3
  */
-const int HOK = 6;
+const int HOK = 20;
 
 /**
  * SOLENOID_POWER - Power control for solenoid array
  * GPIO7 - Safe output pin on ESP32-S3
  */
-const int SOLENOID_POWER = 7;
-
-#else
-// ESP32 and ESP32-S2 pin configuration
-/**
- * ND1 (Needle Detection 1) - Pattern position sensor
- * GPIO21 - Safe I/O pin, available on both ESP32 and ESP32-S2
- */
-const int ND1 = 21;
+const int SOLENOID_POWER = 21;
 
 /**
- * KSL (Knitting Section Limit) - Point CAM detection
- * GPIO22 - Safe I/O pin, available on both ESP32 and ESP32-S2
+ * DOB_INVERTED - Indicates if DOB signal is inverted
+ * On ESP32, DOB is connected through a 2N2222A transistor for 5V level shifting,
+ * which inverts the signal (HIGH becomes LOW and vice versa).
  */
-const int KSL = 22;
-
-/**
- * DOB (Data Out Buffer) - Solenoid control output
- * GPIO23 - Safe output pin, available on both ESP32 and ESP32-S2
- */
-const int DOB = 23;
-
-/**
- * CCP (Carriage Clock Pulse) - Needle transition detector
- * GPIO18 - Safe I/O pin, available on both ESP32 and ESP32-S2
- */
-const int CCP = 18;
-
-/**
- * HOK (Horizontal OK / Direction) - Carriage direction indicator
- * GPIO5 - Safe I/O pin, available on both ESP32 and ESP32-S2
- */
-const int HOK = 5;
-
-/**
- * SOLENOID_POWER - Power control for solenoid array
- * GPIO17 - Safe output pin, available on both ESP32 and ESP32-S2
- */
-const int SOLENOID_POWER = 17;
-
-#endif  // CONFIG_IDF_TARGET_ESP32S3
+const bool DOB_INVERTED = true;
 
 }  // namespace PinsCorrespondance
 

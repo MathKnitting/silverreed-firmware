@@ -7,12 +7,13 @@
 #include "config.h"
 #include "debug.h"
 #include "knitting.h"
+#include "machine/carriage.h"
 
 void setup() {
   /**
    * Setup run at the start of the Arduino.
    */
-  // Set the pin modes.
+  // Set the pin modes for input pins.
   pinMode(PinsCorrespondance::ND1, INPUT_PULLUP);  // not used for now
   pinMode(PinsCorrespondance::KSL, INPUT_PULLUP);
   pinMode(PinsCorrespondance::DOB, OUTPUT);
@@ -20,9 +21,9 @@ void setup() {
   pinMode(PinsCorrespondance::HOK, INPUT_PULLUP);
   pinMode(PinsCorrespondance::SOLENOID_POWER, OUTPUT);
 
-  // Set the DOB initial state to low.
-  digitalWrite(PinsCorrespondance::DOB, LOW);
-  digitalWrite(PinsCorrespondance::SOLENOID_POWER, LOW);
+  // Initialize carriage output pins (DOB and SOLENOID_POWER) to safe state.
+  // This handles DOB signal inversion automatically for platforms that need it.
+  Carriage::secure_carriage();
 
   // Initialize the program singletons.
   Ayab.init();

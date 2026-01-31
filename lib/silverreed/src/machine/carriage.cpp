@@ -102,7 +102,10 @@ void Carriage::set_DOB_state(int state) {
   if (this->DOB_state == state) return;
 
   this->DOB_state = state;
-  digitalWrite(PinsCorrespondance::DOB, state);
+
+  // Apply inversion if needed
+  int physical_state = PinsCorrespondance::DOB_INVERTED ? !state : state;
+  digitalWrite(PinsCorrespondance::DOB, physical_state);
 }
 
 bool Carriage::is_solenoid_powered() const {
@@ -143,4 +146,21 @@ void Carriage::check_and_shutoff_if_inactive() {
   if (elapsed >= SOLENOID_INACTIVITY_TIMEOUT_MS) {
     this->power_solenoid(LOW);
   }
+}
+
+void Carriage::secure_carriage() {
+  /*
+   * Static method to initialize carriage hardware pins and set them to a safe
+   * state. This should be called during setup() to configure the DOB and
+   * SOLENOID_POWER pins before any other operations.
+   *
+   * The DOB signal inversion (if needed on platforms like ESP32 with
+   * level-shifting transistors) is handled automatically.
+   */
+
+  // Set both to LOW (safe state)
+  // For DOB, apply inversion if needed (e.g., ESP32 with 2N2222A transistor)
+  int dob_physical_state = PinsCorrespondance::DOB_INVERTED ? HIGH : LOW;
+  digitalWrite(PinsCorrespondance::DOB, dob_physical_state);
+  digitalWrite(PinsCorrespondance::SOLENOID_POWER, LOW);
 }

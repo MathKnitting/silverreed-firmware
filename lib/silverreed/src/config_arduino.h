@@ -50,6 +50,13 @@ const int HOK = 6;
  * to prevent overheating and reduce power consumption.
  */
 const int SOLENOID_POWER = 7;
+
+/**
+ * DOB_INVERTED - Indicates if DOB signal is inverted
+ * On Arduino, DOB is directly connected, so no inversion is needed.
+ */
+const bool DOB_INVERTED = false;
+
 }  // namespace PinsCorrespondance
 
 #endif  // !ESP32
