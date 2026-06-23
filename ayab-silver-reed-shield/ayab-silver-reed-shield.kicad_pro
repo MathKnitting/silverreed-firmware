@@ -1,6 +1,45 @@
 {
   "board": {
-    "3dviewports": [],
+    "3dviewports": [
+      {
+        "name": "bottom",
+        "ww": 1.0,
+        "wx": 6.173470973968506,
+        "wy": 9.281118392944336,
+        "wz": -7.49411153793335,
+        "xw": 0.0,
+        "xx": -0.9840945601463318,
+        "xy": -0.17759151756763458,
+        "xz": 0.004378921817988157,
+        "yw": 0.0,
+        "yx": -0.16880561411380768,
+        "yy": 0.9271616339683533,
+        "yz": -0.33447861671447754,
+        "zw": 0.0,
+        "zx": 0.055340614169836044,
+        "zy": -0.32989776134490967,
+        "zz": -0.9423931241035461
+      },
+      {
+        "name": "top",
+        "ww": 1.0,
+        "wx": -8.717777252197266,
+        "wy": 6.6661176681518555,
+        "wz": -6.567748069763184,
+        "xw": 0.0,
+        "xx": 0.9840943813323975,
+        "xy": 0.17758555710315704,
+        "xz": -0.004395348019897938,
+        "yw": 0.0,
+        "yx": -0.16880574822425842,
+        "yy": 0.927161693572998,
+        "yz": -0.33447858691215515,
+        "zw": 0.0,
+        "zx": -0.05532321706414223,
+        "zy": 0.32990095019340515,
+        "zz": 0.942392885684967
+      }
+    ],
     "design_settings": {
       "defaults": {
         "apply_defaults_to_fp_barcodes": false,
@@ -53,18 +92,18 @@
           "45_degree_only": false,
           "border_display_style": 2,
           "border_hatch_pitch": 0.5,
-          "corner_radius": 0.0,
-          "corner_smoothing": 0,
+          "corner_radius": 1.0,
+          "corner_smoothing": 2,
           "fill_mode": 0,
           "hatch_gap": 1.5,
           "hatch_orientation": 0.0,
           "hatch_smoothing_level": 0,
           "hatch_smoothing_value": 0.1,
           "hatch_thickness": 1.0,
-          "min_clearance": 0.508,
+          "min_clearance": 0.0,
           "min_island_area": 10.0,
-          "min_thickness": 0.25,
-          "pad_connection": 1,
+          "min_thickness": 0.025,
+          "pad_connection": 2,
           "remove_islands": 0,
           "thermal_relief_gap": 0.5,
           "thermal_relief_spoke_width": 0.5
@@ -77,7 +116,16 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "unconnected_items|104000000|80000000|F.Cu|4|211f5004-d6ca-4044-827a-c4c1a026916e|43560b88-e17c-49d8-8bc7-9972c5da6af2",
+          ""
+        ],
+        [
+          "unconnected_items|151000000|76300000|F.Cu|4|7a03e6a2-1cb9-4691-8770-813480a3c29d|62f3abfb-ec33-4b82-b8ff-8a258333402c",
+          ""
+        ]
+      ],
       "meta": {
         "filename": "board_design_settings.json",
         "version": 2
@@ -110,7 +158,7 @@
         "items_not_allowed": "error",
         "length_out_of_range": "error",
         "lib_footprint_issues": "warning",
-        "lib_footprint_mismatch": "warning",
+        "lib_footprint_mismatch": "ignore",
         "malformed_courtyard": "error",
         "microvia_drill_out_of_range": "error",
         "mirrored_text_on_front_layer": "warning",
@@ -123,9 +171,9 @@
         "padstack": "error",
         "pth_inside_courtyard": "error",
         "shorting_items": "error",
-        "silk_edge_clearance": "warning",
-        "silk_over_copper": "error",
-        "silk_overlap": "error",
+        "silk_edge_clearance": "ignore",
+        "silk_over_copper": "ignore",
+        "silk_overlap": "ignore",
         "skew_out_of_range": "error",
         "solder_mask_bridge": "error",
         "starved_thermal": "error",
@@ -176,7 +224,7 @@
           "td_onpthpad": true,
           "td_onroundshapesonly": false,
           "td_onsmdpad": true,
-          "td_ontrackend": false,
+          "td_ontrackend": true,
           "td_onvia": true
         }
       ],
@@ -194,7 +242,7 @@
         },
         {
           "td_allow_use_two_tracks": true,
-          "td_curve_segcount": 0,
+          "td_curve_segcount": 1,
           "td_height_ratio": 1.0,
           "td_length_ratio": 0.5,
           "td_maxheight": 2.0,
@@ -544,6 +592,22 @@
         "via_diameter": 0.6,
         "via_drill": 0.4,
         "wire_width": 6
+      },
+      {
+        "name": "Power",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.8,
+        "tuning_profile": ""
+      },
+      {
+        "name": "SmallPower",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.4,
+        "tuning_profile": ""
       }
     ],
     "meta": {
@@ -551,7 +615,28 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "Power",
+        "pattern": "+15V"
+      },
+      {
+        "netclass": "SmallPower",
+        "pattern": "+5V"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/Vsol"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/Vmerged"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+8V"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
@@ -664,6 +749,18 @@
           "group_by": false,
           "label": "Description",
           "name": "Description",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Sim.Type",
+          "name": "Sim.Type",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Field5",
+          "name": "Field5",
           "show": false
         }
       ],
