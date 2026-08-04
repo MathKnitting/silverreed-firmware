@@ -8779,7 +8779,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000056d71773")
 		(property "Reference" "J1"
@@ -9136,7 +9136,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000056d72368")
 		(property "Reference" "J2"
@@ -9335,7 +9335,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000056d72f1c")
 		(property "Reference" "J3"
@@ -9449,7 +9449,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000056d734d0")
 		(property "Reference" "J4"
@@ -9663,6 +9663,17 @@
 			)
 		)
 		(property "Ref" ""
+			(at 257.81 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C7420339"
 			(at 257.81 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -10062,6 +10073,17 @@
 				)
 			)
 		)
+		(property "LCSC" "C2906982"
+			(at 156.21 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "8ace6a0f-c8a1-4b57-80a3-0b1eaaaec116")
 		)
@@ -10257,7 +10279,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C19077538"
+		(property "LCSC" "C908771"
 			(at 193.04 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -11356,6 +11378,17 @@
 				)
 			)
 		)
+		(property "LCSC" "C25803"
+			(at 101.6 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "857d54e9-0d6a-443e-8ab3-41f150d53934")
 		)
@@ -11469,7 +11502,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C167223"
+		(property "LCSC" "C475910"
 			(at 87.63 113.03 0)
 			(hide yes)
 			(show_name no)
@@ -11809,9 +11842,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "633abfeb-7385-43f1-9db2-ca1033503c05")
 		(property "Reference" "J7"
@@ -12032,6 +12065,17 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
+			(at 101.6 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C99782"
 			(at 101.6 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -12429,6 +12473,17 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
+			(at 210.82 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C22961"
 			(at 210.82 127 0)
 			(hide yes)
 			(show_name no)
@@ -14019,6 +14074,17 @@
 				)
 			)
 		)
+		(property "LCSC" "C22984"
+			(at 156.21 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "ad24be73-2d71-4577-aa56-44cefcbe01a7")
 		)
@@ -14121,6 +14187,17 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
+			(at 227.33 135.89 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25803"
 			(at 227.33 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -14681,6 +14758,17 @@
 				)
 			)
 		)
+		(property "LCSC" "C2906982"
+			(at 242.57 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "49b7cbc7-06c7-418e-a850-044df1528cad")
 		)
@@ -15113,6 +15201,17 @@
 			)
 		)
 		(property "Description" "Polarized capacitor"
+			(at 207.01 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4747958"
 			(at 207.01 43.18 0)
 			(hide yes)
 			(show_name no)
