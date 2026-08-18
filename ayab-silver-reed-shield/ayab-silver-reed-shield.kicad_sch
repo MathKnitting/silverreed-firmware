@@ -10701,9 +10701,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
 		(dnp yes)
 		(uuid "3f5d6516-aa70-4833-9cf3-c2d0f982029a")
 		(property "Reference" "C6"
