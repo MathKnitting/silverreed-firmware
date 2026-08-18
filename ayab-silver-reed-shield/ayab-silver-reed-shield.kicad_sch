@@ -202,7 +202,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Comparator:LMV331"
+		(symbol "Comparator:TL331"
 			(pin_names
 				(offset 0.127)
 			)
@@ -221,7 +221,7 @@
 					)
 				)
 			)
-			(property "Value" "LMV331"
+			(property "Value" "TL331"
 				(at 3.81 -5.08 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -231,8 +231,8 @@
 					)
 				)
 			)
-			(property "Footprint" ""
-				(at 0 2.54 0)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+				(at 1.27 -15.24 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -242,7 +242,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lmv331.pdf"
+			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/tl331.pdf"
 				(at 0 5.08 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -253,7 +253,7 @@
 					)
 				)
 			)
-			(property "Description" "Single General-Purpose Low-Voltage Comparator, SOT-23-5/SC-70-5"
+			(property "Description" "Single Differential Comparator with Open-Collector Output, SOT-23-5"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -275,7 +275,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "SOT?23* *SC?70*"
+			(property "ki_fp_filters" "SOT?23*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -286,7 +286,7 @@
 					)
 				)
 			)
-			(symbol "LMV331_0_1"
+			(symbol "TL331_0_1"
 				(polyline
 					(pts
 						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
@@ -299,25 +299,12 @@
 						(type background)
 					)
 				)
-				(polyline
-					(pts
-						(xy 3.302 -0.508) (xy 2.794 -0.508) (xy 3.302 0) (xy 2.794 0.508) (xy 2.286 0) (xy 2.794 -0.508)
-						(xy 2.286 -0.508)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
 			)
-			(symbol "LMV331_1_1"
+			(symbol "TL331_1_1"
 				(pin input line
-					(at -7.62 2.54 0)
+					(at -7.62 -2.54 0)
 					(length 2.54)
-					(name "+"
+					(name "-"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -351,9 +338,9 @@
 					)
 				)
 				(pin input line
-					(at -7.62 -2.54 0)
+					(at -7.62 2.54 0)
 					(length 2.54)
-					(name "-"
+					(name "+"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -6507,12 +6494,6 @@
 		(uuid "5af3d94a-db1d-4ec6-a685-2e694f3f39a6")
 	)
 	(junction
-		(at 207.01 113.03)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5b341569-82e6-498d-a2f2-850f0fdc1017")
-	)
-	(junction
 		(at 78.74 35.56)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6559,6 +6540,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "898099aa-4494-4f1a-896b-f1ed743e7adf")
+	)
+	(junction
+		(at 207.01 113.03)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "93d77951-536c-40c0-b23d-2fa60ef0aa07")
 	)
 	(junction
 		(at 78.74 74.93)
@@ -7496,16 +7483,6 @@
 	)
 	(wire
 		(pts
-			(xy 207.01 113.03) (xy 219.71 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "75cc44b3-52b1-47ec-b446-56afb9824185")
-	)
-	(wire
-		(pts
 			(xy 231.14 135.89) (xy 242.57 135.89)
 		)
 		(stroke
@@ -7523,16 +7500,6 @@
 			(type default)
 		)
 		(uuid "77b211fc-3aeb-4b83-b419-a42f55b2edca")
-	)
-	(wire
-		(pts
-			(xy 215.9 118.11) (xy 219.71 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "77eee261-f989-4b2a-bf51-27da8e84d8bc")
 	)
 	(wire
 		(pts
@@ -7593,6 +7560,16 @@
 			(type default)
 		)
 		(uuid "86b8f2c4-697d-4354-8801-0b4340b3633d")
+	)
+	(wire
+		(pts
+			(xy 207.01 118.11) (xy 219.71 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8741ebde-a48f-4304-b365-3c4fef096b36")
 	)
 	(wire
 		(pts
@@ -8206,6 +8183,26 @@
 	)
 	(wire
 		(pts
+			(xy 207.01 113.03) (xy 207.01 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dc04a07c-ceee-49f7-9c8d-adff8f1a6f41")
+	)
+	(wire
+		(pts
+			(xy 215.9 113.03) (xy 219.71 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dc8d811a-f9ec-4b41-b199-0f5272c980a0")
+	)
+	(wire
+		(pts
 			(xy 168.91 95.25) (xy 168.91 109.22)
 		)
 		(stroke
@@ -8246,7 +8243,7 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 118.11) (xy 215.9 135.89)
+			(xy 215.9 113.03) (xy 215.9 135.89)
 		)
 		(stroke
 			(width 0)
@@ -13429,9 +13426,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Comparator:LMV331")
+		(lib_id "Comparator:TL331")
 		(at 227.33 115.57 0)
-		(mirror x)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13441,7 +13437,7 @@
 		(dnp no)
 		(uuid "8634b70b-be29-433e-96d2-2e9a6ddfa002")
 		(property "Reference" "U3"
-			(at 228.346 119.888 0)
+			(at 231.14 118.11 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13450,8 +13446,8 @@
 				)
 			)
 		)
-		(property "Value" "LMV331"
-			(at 229.87 121.92 0)
+		(property "Value" "TL331"
+			(at 232.664 121.158 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13461,7 +13457,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
-			(at 227.33 118.11 0)
+			(at 227.33 113.03 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13471,8 +13467,8 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lmv331.pdf"
-			(at 227.33 120.65 0)
+		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/tl331.pdf"
+			(at 227.33 110.49 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13482,29 +13478,7 @@
 				)
 			)
 		)
-		(property "Description" "Single General-Purpose Low-Voltage Comparator, SOT-23-5/SC-70-5"
-			(at 227.33 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" ""
-			(at 227.33 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Ref" ""
+		(property "Description" "Single Differential Comparator with Open-Collector Output, SOT-23-5"
 			(at 227.33 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -15072,7 +15046,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 208.28 118.11 0)
+			(at 208.28 119.38 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
