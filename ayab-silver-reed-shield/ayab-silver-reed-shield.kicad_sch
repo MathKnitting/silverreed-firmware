@@ -11178,9 +11178,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
-		(in_pos_files no)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "49d61cc9-7424-43e4-8ea3-d6fc1a86e8ac")
 		(property "Reference" "JP1"
@@ -11230,6 +11230,28 @@
 		)
 		(property "Description" "Jumper, 2-pole, small symbol, open"
 			(at 21.59 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "FT Rotation Offset" "90"
+			(at 21.59 43.18 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C5383111"
+			(at 21.59 43.18 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11991,6 +12013,17 @@
 			)
 		)
 		(property "LCSC" "C719176"
+			(at 101.6 142.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "FT Rotation Offset" "180"
 			(at 101.6 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -13388,6 +13421,17 @@
 			)
 		)
 		(property "LCSC" "C191884"
+			(at 58.42 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "FT Rotation Offset" "90"
 			(at 58.42 113.03 0)
 			(hide yes)
 			(show_name no)
@@ -15350,6 +15394,28 @@
 				)
 			)
 		)
+		(property "FT Rotation Offset" "180"
+			(at 123.19 44.45 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "FT Position Offset" "0,-4.318"
+			(at 123.19 44.45 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "8"
 			(uuid "31819f20-eeb7-4fdd-94ce-a275cd14bb18")
 		)
@@ -15451,6 +15517,17 @@
 			)
 		)
 		(property "LCSC" "C4747958"
+			(at 207.01 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "FT Rotation Offset" "180"
 			(at 207.01 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -15599,6 +15676,17 @@
 			)
 		)
 		(property "LCSC" "C913246"
+			(at 210.82 135.89 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "FT Rotation Offset" "-90"
 			(at 210.82 135.89 0)
 			(hide yes)
 			(show_name no)
