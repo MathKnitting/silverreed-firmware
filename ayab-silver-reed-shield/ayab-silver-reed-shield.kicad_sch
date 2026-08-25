@@ -6255,9 +6255,9 @@
 		)
 		(uuid "7827a489-9785-4af4-81ac-924957daf6c6")
 	)
-	(text "Vout = 0.596 * (RV1+R2+R1) / (RV1+R2)\nVout_min = 0.596 * (15+100) / 15 = 4.6V\nVout_max = 0.596 * (5+100) / 5 = 12.5V"
+	(text "Vout = 0.596 * (RV1+R2+R1) / (RV1+R2)\nVout_min = 0.596 * (10+4.7+100) / 15 = 4.56V\nVout_max = 0.596 * (0+4.7+100) / 5 = 12.48V"
 		(exclude_from_sim no)
-		(at 53.34 147.32 0)
+		(at 48.26 147.32 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12250,7 +12250,7 @@
 				)
 			)
 		)
-		(property "Value" "5k"
+		(property "Value" "4.7k"
 			(at 106.68 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12337,7 +12337,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C99782"
+		(property "LCSC" "C23162"
 			(at 101.6 149.86 0)
 			(hide yes)
 			(show_name no)

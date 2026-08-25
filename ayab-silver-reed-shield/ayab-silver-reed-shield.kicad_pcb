@@ -63905,7 +63905,7 @@
 				)
 			)
 		)
-		(property "Value" "5k"
+		(property "Value" "4.7k"
 			(at 0 1.43 90)
 			(layer "F.Fab")
 			(uuid "6bcb6429-4ef6-431c-b6fc-3e22490af41e")
@@ -63989,7 +63989,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C99782"
+		(property "LCSC" "C23162"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -64434,6 +64434,12 @@
 		(path "/eae9abba-7bac-4bcc-9070-0cfc7c2ccf99")
 		(sheetname "/")
 		(sheetfile "ayab-silver-reed-shield.kicad_sch")
+		(units
+			(unit
+				(name "A")
+				(pins "4" "1" "6" "2" "8" "5" "3" "7")
+			)
+		)
 		(attr through_hole)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_rect
