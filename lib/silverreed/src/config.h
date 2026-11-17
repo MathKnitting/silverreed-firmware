@@ -9,6 +9,17 @@
 #include <stdint.h>
 
 /**
+ * Select a pin number depending on the target board.
+ * First value: Arduino UNO shield. Second value: ESP32-C3 board
+ * (ayab-silver-reed-shield/ayab-silver-reed-esp32).
+ */
+#if defined(ARDUINO_ARCH_ESP32)
+#define SILVERREED_PIN(arduino_pin, esp32_pin) (esp32_pin)
+#else
+#define SILVERREED_PIN(arduino_pin, esp32_pin) (arduino_pin)
+#endif
+
+/**
  * @namespace PinsCorrespondance
  * @brief Hardware pin assignments for Silver Reed knitting machine interface
  *
@@ -21,41 +32,41 @@ namespace PinsCorrespondance {
  * ND1 (Needle Detection 1) - Pattern position sensor
  * Currently not used in this implementation.
  */
-const int ND1 = 2;
+const int ND1 = SILVERREED_PIN(2, 7);
 
 /**
  * KSL (Knitting Section Limit) - Point CAM detection
  * Detects when carriage is between the two point CAMs (magnets on bed).
  * HIGH when carriage is in the pattern section, LOW when outside.
  */
-const int KSL = 3;
+const int KSL = SILVERREED_PIN(3, 6);
 
 /**
  * DOB (Data Out Buffer) - Solenoid control output
  * Controls which needles should be selected by the solenoid array.
  * HIGH selects the needle, LOW deselects it.
  */
-const int DOB = 4;
+const int DOB = SILVERREED_PIN(4, 10);
 
 /**
  * CCP (Carriage Clock Pulse) - Needle transition detector
  * Generates a pulse (LOW to HIGH transition) each time the carriage
  * moves to a new needle position. Used to synchronize pattern data output.
  */
-const int CCP = 5;
+const int CCP = SILVERREED_PIN(5, 0);
 
 /**
  * HOK (Horizontal OK / Direction) - Carriage direction indicator
  * HIGH when carriage moves to the left, LOW when moving to the right.
  */
-const int HOK = 6;
+const int HOK = SILVERREED_PIN(6, 20);
 
 /**
  * SOLENOID_POWER - Power control for solenoid array
  * Controls power supply to the solenoid array. Turned off during inactivity
  * to prevent overheating and reduce power consumption.
  */
-const int SOLENOID_POWER = 7;
+const int SOLENOID_POWER = SILVERREED_PIN(7, 3);
 }  // namespace PinsCorrespondance
 
 // Solenoid power management

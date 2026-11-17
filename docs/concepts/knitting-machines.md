@@ -83,8 +83,8 @@ The firmware reads and controls several signals:
 | 3 | **DOB** | Digital | Output | Data Out Buffer - controls the needle |
 | 4 | **CCP** | Digital | Input | Clock Pulse - counts needles |
 | 5 | **HOK** | Digital | Input | Carriage direction (LEFT/RIGHT) |
-| 6 | **5V** | Power | Supply | Global power supply (5V) |
-| 7 | **16V** | Power | Supply | Solenoid power supply (16V) |
+| 6 | **16V** | Power | Supply | Solenoid power supply (16V) |
+| 7 | **5V** | Power | Supply | Global power supply (5V) |
 | 8 | **GND** | Ground | Common | Common ground |
 
 ## Technical Details

@@ -19,6 +19,7 @@ nav:
     - AYAB Protocol: concepts/ayab-protocol.md
   - Hardware:
     - Shield Design: hardware/shield.md
+    - ESP32-C3 Board: hardware/esp32-board.md
     - Pin Mapping: hardware/pin-mapping.md
     - Wiring: hardware/wiring.md
     - Components: hardware/components.md

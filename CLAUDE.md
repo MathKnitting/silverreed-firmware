@@ -66,6 +66,7 @@ uv run task --list
 - `uno` - Arduino UNO (default)
 - `unodebug` - Arduino UNO with DEBUG flag enabled
 - `uno_r4_wifi` - Arduino UNO R4 WiFi
+- `esp32c3` - ESP32-C3 board (see docs/hardware/esp32-board.md)
 - `simavr` - AVR simulator for testing
 - `native` - Native platform for desktop tests
 
